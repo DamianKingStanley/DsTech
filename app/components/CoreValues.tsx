@@ -69,7 +69,7 @@ const CoreValues: React.FC = () => {
         {values.map((value, index) => (
           <div
             key={index}
-            className="p-6 border-2 border-gray-400 hover:border-blue-400 box-border flex flex-col items-center text-center transition-transform transform  hover:shadow-1xl"
+            className="p-6 hover:border-2  hover:border-blue-400 box-border flex flex-col items-center text-center transition-transform transform  hover:shadow-1xl"
           >
             {value.icon}
             <h3 className="text-2xl  ">{value.title}</h3>

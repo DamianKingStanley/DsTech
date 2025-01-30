@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = (dropdown: string) => {
+  const toggleDropdown = (dropdown: string | null) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
 
@@ -143,16 +143,16 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Toggle */}
           <button className="md:hidden" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? (
-              <FaTimes className="text-sm" />
+              <FaTimes className="text-lg" />
             ) : (
-              <FaBars className="text-sm" />
+              <FaBars className="text-lg" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white mt-2 pb-8 text-sm font-semibold text-black ">
+          <div className="md:hidden bg-white mt-2 pb-8 text-sm font-semibold text-black leading-10">
             <Link
               href="/"
               className="block px-4 py-2 hover:bg-blue-600 hover:text-white"

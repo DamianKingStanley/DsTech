@@ -35,7 +35,7 @@ const JobProfile: React.FC = () => {
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="p-2 border-2 border-gray-400 hover:border-blue-400 box-border flex flex-col items-center text-center transition-transform transform hover:shadow-2xl rounded-lg"
+            className="p-2 border-2 shadow-lg hover:border-blue-400 box-border flex flex-col items-center text-center transition-transform transform hover:shadow-2xl rounded-lg"
           >
             <Image
               src={profile.image}

@@ -113,7 +113,7 @@ export default function ServicesSlider() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="w-1/3 min-w-full md:min-w-[33.33%] p-6 "
+              className="w-full min-w-full md:min-w-[33.33%] p-6 "
             >
               <div className="bg-white p-6 rounded-lg shadow-lg mx-2 h-56">
                 <div className="flex justify-center mb-4  text-2xl font-bold text-blue-700">
@@ -161,17 +161,16 @@ export default function ServicesSlider() {
             solutions that enhance productivity, creativity, and efficiency.
           </p>
           <p className="text-sm mb-3 text-gray-700 text-justify">
-            At Starnet Innovations Limited, we are committed to delivering
-            products that meet the ever-evolving demands of the modern world.
-            Our team of experts is dedicated to ensuring that our customers
-            receive the highest quality products and services.
+            At DS TECH, we are committed to delivering products that meet the
+            ever-evolving demands of the modern world. Our team of experts is
+            dedicated to ensuring that our customers receive the highest quality
+            products and services.
           </p>
           <p className="text-sm mb-3 text-gray-700 text-justify">
             We believe that technology should simplify life, not complicate it.
             That’s why we strive to make our products user-friendly and
             intuitive. Whether you are looking to upgrade your work processes or
-            revolutionize the way you play, Starnet Innovations Limited has you
-            covered.
+            revolutionize the way you play, DS TECH has you covered.
           </p>
 
           <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">

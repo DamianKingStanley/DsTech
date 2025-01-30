@@ -4,21 +4,21 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const heroImage = "/images/robot.png";
-const backgroundImage = "/images/comp.png";
+// const backgroundImage = "/images/comp.png";
 const brands = ["Web", "Mobile", "AI", "DApp", "Simulation", "Projects"];
 
 const WhyChooseUs: React.FC = () => {
   return (
     <section
-      className="relative bg-cover bg-center text-white py-10"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      className="relative bg-cover bg-center  py-10"
+      //   style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div className="absolute inset-0 bg-opacity-60"></div>
 
       <div className="container mx-auto px-6 lg:px-20 relative flex flex-col-reverse lg:flex-row items-center">
         <div className="lg:w-1/2 text-left">
           <h1 className="text-4xl font-bold mb-4">Why Choose Us</h1>
-          <p className="text-xl mb-8">...We are the best. No Cap!</p>
+          <p className="text-xl mb-8">We are the best. No Cap!</p>
           <p className="text-lg mb-6 text-justify">
             At DS Tech, we believe that our company stands out from the
             competition. With a strong focus on innovation, integrity,
@@ -52,12 +52,12 @@ const WhyChooseUs: React.FC = () => {
       {/* Sliding Brand Logos Section */}
       <div className="relative w-full overflow-hidden mt-10">
         <motion.div
-          className="flex space-x-10 justify-center text-lg font-semibold text-gray-300"
+          className="flex space-x-10 justify-center text-lg font-semibold"
           animate={{ x: ["0%", "-50%", "50%"] }} // Slide left and restart
           transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
         >
           {brands.concat(brands).map((item, index) => (
-            <span key={index} className="mx-4 text-sm">
+            <span key={index} className="mx-4 text-xl">
               {item}
             </span>
           ))}
