@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = (dropdown: string) => {
+  const toggleDropdown = (dropdown: string | null) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
 
