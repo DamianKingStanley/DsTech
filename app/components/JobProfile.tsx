@@ -27,7 +27,7 @@ const JobProfile: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white text-black">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
         OUR JOB PROFILE
       </h2>

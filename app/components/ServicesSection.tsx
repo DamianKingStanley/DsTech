@@ -120,7 +120,7 @@ export default function ServicesSlider() {
   };
 
   return (
-    <section className="py-16 text-center">
+    <section className="py-16 text-center bg-white text-black">
       <h2 className="text-2xl font-bold text-blue-700 mb-6">
         Services We Provide
       </h2>
@@ -137,7 +137,7 @@ export default function ServicesSlider() {
               key={index}
               className="w-full md:w-1/2 lg:w-1/3 p-4 flex-shrink-0"
             >
-              <div className="bg-white p-6 rounded-lg shadow-lg mx-2 h-56">
+              <div className="bg-white text-black p-6 rounded-lg shadow-lg mx-2 h-56">
                 <div className="flex justify-center mb-4 text-2xl font-bold text-blue-700">
                   {service.icon}
                 </div>
