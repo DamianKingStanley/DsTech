@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
@@ -45,13 +45,14 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = Math.ceil(testimonials.length / 3);
 
-  const nextSlide = () => {
+  // Memoize nextSlide function to prevent re-creation
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-  };
+  }, [totalSlides]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
-  };
+  }, [totalSlides]);
 
   // Automatic slide transition
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function Testimonials() {
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [nextSlide]); // Now useCallback ensures `nextSlide` doesn't change unnecessarily
 
   return (
     <section className="py-16 text-center">
