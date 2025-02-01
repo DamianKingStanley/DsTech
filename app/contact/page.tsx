@@ -19,11 +19,13 @@ const Contact = () => {
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setStatus("Sending...");
@@ -50,7 +52,6 @@ const Contact = () => {
           Contact Us
         </h1>
 
-        {/* Contact Info & Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center bg-white p-8 rounded-lg shadow-lg mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl font-bold text-gray-700">Get in Touch</h2>
@@ -68,8 +69,6 @@ const Contact = () => {
                 <span>+234 901 234 5678</span>
               </p>
             </div>
-
-            {/* Social Icons */}
             <div className="mt-6 flex space-x-6 text-2xl">
               <a
                 href="https://facebook.com"
@@ -103,12 +102,10 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Form */}
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Send Us a Message
           </h2>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-gray-700 font-medium">Name</label>
@@ -146,7 +143,6 @@ const Contact = () => {
                 placeholder="Write your message"
               ></textarea>
             </div>
-
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
@@ -154,7 +150,6 @@ const Contact = () => {
               Send Message
             </button>
           </form>
-
           {status && (
             <p className="mt-4 text-center text-lg font-medium text-gray-700">
               {status}
