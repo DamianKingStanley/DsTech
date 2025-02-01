@@ -61,7 +61,7 @@ const CoreValues: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-white">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
         OUR VALUES
       </h2>

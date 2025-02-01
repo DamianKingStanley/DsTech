@@ -6,7 +6,7 @@ const JobProfile: React.FC = () => {
     {
       title: "AfroTale Writing Platform",
       description:
-        " Afrotale is a platform that allows writers to publish their stories and readers to discover new content. It’s built to be user-friendly, engaging, and easy to navigate, with features like categories, search, and social sharing.",
+        "Afrotale is a platform that allows writers to publish their stories and readers to discover new content. It’s built to be user-friendly, engaging, and easy to navigate, with features like categories, search, and social sharing.",
       image: "/images/afrotales.png",
       url: "https://www.afrotale.netlify.app",
     },
@@ -27,33 +27,39 @@ const JobProfile: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-white">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
         OUR JOB PROFILE
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8">
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="p-2 border-2 shadow-lg hover:border-blue-400 box-border flex flex-col items-center text-center transition-transform transform hover:shadow-2xl rounded-lg"
+            className="p-4 border border-gray-200 shadow-md hover:shadow-xl rounded-lg transition duration-300 flex flex-col items-center text-center bg-white"
           >
-            <Image
-              src={profile.image}
-              alt={profile.title}
-              width={300}
-              height={300}
-              className=" h-48 object-cover mb-4"
-            />
-            <h3 className="text-1xl font-semibold">{profile.title}</h3>
-            <p className="mt-4 text-sm text-gray-600">{profile.description}</p>
-            <a
-              href={profile.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 text-blue-600 hover:underline text-sm"
-            >
-              {profile.url}
-            </a>
+            <div className="w-full">
+              <Image
+                src={profile.image}
+                alt={profile.title}
+                width={300}
+                height={200}
+                className="w-full h-40 md:h-48 object-cover rounded-t-lg"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-semibold">{profile.title}</h3>
+              <p className="mt-2 text-sm text-gray-600">
+                {profile.description}
+              </p>
+              <a
+                href={profile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block text-blue-600 hover:underline text-sm"
+              >
+                Visit Site
+              </a>
+            </div>
           </div>
         ))}
       </div>

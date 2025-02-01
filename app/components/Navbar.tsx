@@ -1,6 +1,6 @@
-"use client"; // Required for interactivity in Next.js
+"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -8,9 +8,32 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null); // Ref for mobile menu
+  const navbarRef = useRef<HTMLDivElement | null>(null); // Ref for navbar container
+
+  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Close the mobile menu when clicking outside of the navbar
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      navbarRef.current &&
+      !navbarRef.current.contains(event.target as Node)
+    ) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Add event listener for outside click
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = (dropdown: string | null) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
@@ -21,23 +44,14 @@ const Navbar: React.FC = () => {
     "Android and IOS Apps",
     "Website Development",
     "Software Development",
-    "Search Engine Optimization",
-    "Internet Marketing",
+    "Tech Coaching",
     "Graphics and Branding",
   ];
 
-  const aboutDropdown = [
-    "About Us",
-    "Our Team",
-    "Awards and Recognition",
-    "Community Involvement",
-    "Values and Philosophy",
-    "Privacy Policy",
-    "Press",
-  ];
+  const aboutDropdown = ["About Us", "Our Team", "Values", "Privacy Policy"];
 
   return (
-    <nav className="bg-blue-600 text-white sticky top-0 z-50">
+    <nav ref={navbarRef} className="bg-blue-600 text-white sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16 text-sm font-semibold">
           {/* Logo */}
@@ -129,12 +143,12 @@ const Navbar: React.FC = () => {
               )}
             </div>
 
-            <Link href="/career" className="hover:text-gray-200">
+            {/* <Link href="/career" className="hover:text-gray-200">
               Career
             </Link>
             <Link href="/products" className="hover:text-gray-200">
               Our Products
-            </Link>
+            </Link> */}
             <Link href="/contact" className="hover:text-gray-200">
               Contact Us
             </Link>
@@ -152,10 +166,14 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white mt-2 pb-8 text-sm font-semibold text-black leading-10">
+          <div
+            ref={mobileMenuRef}
+            className="md:hidden bg-white mt-2 pb-8 text-sm font-semibold text-black leading-5 space-y-3"
+          >
             <Link
               href="/"
               className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
             >
               Home
             </Link>
@@ -191,6 +209,7 @@ const Navbar: React.FC = () => {
                         .toLowerCase()
                         .replace(/ /g, "-")}`}
                       className="block py-2 hover:bg-blue-600 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
                     >
                       {service}
                     </Link>
@@ -228,6 +247,7 @@ const Navbar: React.FC = () => {
                       key={index}
                       href={`/about/${item.toLowerCase().replace(/ /g, "-")}`}
                       className="block py-2 hover:bg-blue-600 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
                     >
                       {item}
                     </Link>
@@ -236,21 +256,24 @@ const Navbar: React.FC = () => {
               )}
             </div>
 
-            <Link
+            {/* <Link
               href="/career"
               className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
             >
               Career
             </Link>
             <Link
               href="/products"
               className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
             >
               Our Products
-            </Link>
+            </Link> */}
             <Link
               href="/contact"
               className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
             >
               Contact Us
             </Link>

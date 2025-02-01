@@ -15,9 +15,9 @@ const WhyChooseUs: React.FC = () => {
     >
       <div className="absolute inset-0 bg-opacity-60"></div>
 
-      <div className="container mx-auto px-6 lg:px-20 relative flex flex-col-reverse lg:flex-row items-center">
+      <div className="container mx-auto px-6 lg:px-20 relative flex flex-col-reverse lg:flex-row items-center gap-3">
         <div className="lg:w-1/2 text-left">
-          <h1 className="text-4xl font-bold mb-4">Why Choose Us</h1>
+          <h1 className="text-3xl font-bold mb-4 mt-3">Why Choose Us</h1>
           <p className="text-xl mb-8">We are the best. No Cap!</p>
           <p className="text-lg mb-6 text-justify">
             At DS Tech, we believe that our company stands out from the
