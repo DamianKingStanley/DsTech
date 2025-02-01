@@ -168,7 +168,7 @@ const Navbar: React.FC = () => {
         {isMobileMenuOpen && (
           <div
             ref={mobileMenuRef}
-            className="md:hidden bg-white mt-2 pb-8 text-sm font-semibold text-black leading-5 space-y-3"
+            className="md:hidden bg-white mt-2 pb-8 text-lg font-semibold text-black leading-10 space-y-3"
           >
             <Link
               href="/"

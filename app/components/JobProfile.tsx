@@ -14,14 +14,14 @@ const JobProfile: React.FC = () => {
       title: "Mental Health ChatBot",
       description:
         "This chatbot is designed to provide mental health support and resources to students. It uses AI to understand and respond to user messages, offering advice, information, and guidance on mental health topics.",
-      image: "/images/studentmental.png",
+      image: "/images/studentmentalhealth.png",
       url: "https://studentmentalhealth.netlify.app",
     },
     {
       title: "Bookshop",
       description:
         "This e-commerce website allows users to browse, search, and purchase books online. It features a user-friendly interface, secure payment options, and a wide selection of books in various genres.",
-      image: "/images/bookshop.png",
+      image: "/images/ebookshop.png",
       url: "https://mouau-ebookshop.netlify.app",
     },
   ];
