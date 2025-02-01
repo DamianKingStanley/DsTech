@@ -10,12 +10,12 @@ const brands = ["Web", "Mobile", "AI", "DApp", "Simulation", "Projects"];
 const WhyChooseUs: React.FC = () => {
   return (
     <section
-      className="relative bg-cover bg-center  py-10"
+      className="relative bg-cover bg-center bg-white  py-10"
       //   style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="absolute inset-0 bg-opacity-60"></div>
 
-      <div className="container mx-auto px-6 lg:px-20 relative flex flex-col-reverse lg:flex-row items-center gap-3">
+      <div className="container bg-white  mx-auto px-6 lg:px-20 relative flex flex-col-reverse lg:flex-row items-center gap-3">
         <div className="lg:w-1/2 text-left">
           <h1 className="text-3xl font-bold mb-4 mt-3">Why Choose Us</h1>
           <p className="text-xl mb-8">We are the best. No Cap!</p>

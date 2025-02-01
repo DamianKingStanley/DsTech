@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
@@ -39,37 +39,32 @@ const testimonials = [
       "From branding to digital marketing, they handled everything seamlessly. A game-changer!",
     position: "Creative Director, Visionary Designs",
   },
-  {
-    name: "Sophia Martinez",
-    feedback:
-      "From branding to digital marketing, they handled everything seamlessly. A game-changer!",
-    position: "Creative Director, Visionary Designs",
-  },
 ];
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = Math.ceil(testimonials.length / 3);
 
-  const nextSlide = () => {
+  // Memoize nextSlide function to prevent re-creation
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-  };
+  }, [totalSlides]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
-  };
+  }, [totalSlides]);
 
   // Automatic slide transition
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 2000); // Change slide every 5 seconds
+    }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  });
+  }, [nextSlide]); // Now useCallback ensures `nextSlide` doesn't change unnecessarily
 
   return (
-    <section className="py-16 text-center">
+    <section className="py-16 text-center bg-white">
       <h2 className="text-2xl font-bold text-blue-700 mb-6">
         What Our Clients Say
       </h2>
