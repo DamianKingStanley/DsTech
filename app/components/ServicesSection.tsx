@@ -192,7 +192,10 @@ export default function ServicesSlider() {
             That’s why we strive to make our products user-friendly and
             intuitive.
           </p>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+          <button
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+            onClick={() => (window.location.href = "tel:+2349159822561")}
+          >
             Call Us
           </button>
         </div>

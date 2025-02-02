@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ChatwayWidget from "./components/FloatingChat";
+import FloatingPhoneButton from "./components/FloatingPhoneCall";
+import FloatingSocialIcons from "./components/FloatingSocialIcons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +38,8 @@ export default function RootLayout({
       >
         <Navbar />
         <ChatwayWidget />
+        <FloatingPhoneButton />
+        <FloatingSocialIcons />
         {children}
         <Footer />
       </body>
