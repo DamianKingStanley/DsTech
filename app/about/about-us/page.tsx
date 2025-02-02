@@ -47,11 +47,11 @@ const About = () => {
             Why Choose Us
           </h2>
           <p className="text-sm md:text-lg text-gray-700 mb-4">
-            Choosing Starnet Innovations means choosing a partner who cares
-            about your business. We put your needs first and provide the
-            guidance, technology, and support necessary to move forward
-            confidently. Our team is here for you, 24/7, ensuring you&apos;re
-            never alone when facing a challenge.
+            Choosing DS TECH means choosing a partner who cares about your
+            business. We put your needs first and provide the guidance,
+            technology, and support necessary to move forward confidently. Our
+            team is here for you, 24/7, ensuring you&apos;re never alone when
+            facing a challenge.
           </p>
           <p className="text-sm md:text-lg text-gray-700">
             We take pride in being a company that blends innovation with
