@@ -2,7 +2,7 @@
 
 export default function SoftwareDevelopment() {
   return (
-    <div className="bg-white">
+    <div className="bg-white text-black">
       {/* Hero Section */}
       <section className="relative w-full h-[400px] bg-[url('/images/app.png')] bg-cover bg-center text-white">
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -20,7 +20,7 @@ export default function SoftwareDevelopment() {
       </section>
 
       {/* Main Content Section */}
-      <section className="px-6 sm:px-12 md:px-24 py-16">
+      <section className="px-6 sm:px-12 md:px-24 py-16 bg-white text-black">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">
             Building Scalable and Secure Software Solutions

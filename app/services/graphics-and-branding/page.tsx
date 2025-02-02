@@ -25,7 +25,7 @@ export default function GraphicsAndBranding() {
         </div>
       </section>
 
-      <div className=" p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left px-4 sm:px-6 md:px-12">
+      <div className=" p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left px-4 sm:px-6 md:px-12 bg-white text-black">
         {/* Branding Strategy */}
         <div className="bg-gradient-to-r from-indigo-600 to-indigo-800 p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 relative">
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-full shadow-xl">

@@ -37,7 +37,7 @@ const CoreValues: React.FC = () => {
     {
       title: "Collaboration",
       description:
-        "We foster an environment of teamwork, respect, and communication. We believe that the best ideas come from a diversity of perspectives and we value the contributions of all members of our team.",
+        "We believe in a safe workspace encompassing teamwork, respect and communication.",
       icon: (
         <FaUsers className="w-12 h-12 text-blue-400 mb-4 transition-transform transform hover:rotate-12 hover:scale-110" />
       ),

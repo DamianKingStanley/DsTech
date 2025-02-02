@@ -24,7 +24,7 @@ export default function AndroidAndIosDevelopment() {
       </div>
 
       {/* Content Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white text-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2x1 md:text-3x1 font-semibold mb-6">
             How We Develop Android & iOS Apps

@@ -29,7 +29,7 @@ export default function TechCoaching() {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left p-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left p-10 bg-white text-black">
         {/* Web Development */}
         <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
           <div className="flex items-center mb-4">

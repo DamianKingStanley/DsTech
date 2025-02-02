@@ -20,21 +20,27 @@ const WhyChooseUs: React.FC = () => {
           <h1 className="text-3xl font-bold mb-4 mt-3">Why Choose Us</h1>
           <p className="text-xl mb-8">We are the best. No Cap!</p>
           <p className="text-lg mb-6 text-justify">
-            At DS Tech, we believe that our company stands out from the
-            competition. With a strong focus on innovation, integrity,
-            collaboration, customer focus, results-orientation, and continuous
-            improvement, we are uniquely positioned to provide exceptional value
-            to our clients. In this article, we will explore why you should
-            choose DS Tech Innovations as your partner for your next project.
+            At DS Tech, we don&apos;t just deliver solutions, we create
+            innovative, results-driven, and customer-focused experiences. Our
+            commitment to integrity, collaboration, and continuous improvement
+            ensures that we stay ahead of the curve, providing exceptional value
+            to our clients.
           </p>
           <p className="text-lg mb-6 text-justify">
-            We believe that our commitment to innovation, integrity,
-            collaboration, customer focus, results-orientation, and continuous
-            improvement sets us apart from the competition. We are passionate
-            about what we do, and we are committed to delivering exceptional
-            value to our clients. If you are looking for a partner who is
-            committed to your success, we encourage you to consider Starnet
-            Innovations for your next project.
+            We embrace cutting-edge technology to develop solutions that drive
+            efficiency and success. Trust and transparency are at the core of
+            our business. Further more, we work closely with our clients to
+            understand their unique needs and proffer solutions accordingly.
+          </p>
+          <p className="text-lg mb-6 text-justify">
+            Your success is our priority. We go above and beyond to deliver
+            outstanding results. We measure success by the impact we create. We
+            are always evolving to offer the best solutions in the industry.
+          </p>
+          <p className="text-lg mb-6 text-justify">
+            Choosing DS Tech means partnering with a team that is deeply
+            invested in your success. Let&apos;s work together to bring your
+            vision to life.
           </p>
         </div>
 

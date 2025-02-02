@@ -37,7 +37,7 @@ export default function GeneralServices() {
       </div>
 
       {/* Services Section */}
-      <section className="py-16 px-4 text-center">
+      <section className="py-16 px-4 text-center bg-white text-black">
         <h2 className="text-3xl font-semibold mb-4">Our Services</h2>
         <p className="text-lg mb-12">
           At DS Tech, we provide comprehensive tech services to meet your
