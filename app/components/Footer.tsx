@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
@@ -46,7 +47,7 @@ const Footer: React.FC = () => {
                 <strong>Email:</strong> info@dstech.com
               </li>
               <li className="mb-2">
-                <strong>Phone:</strong> +2348059541956
+                <strong>Phone:</strong> +2349159822561
               </li>
             </ul>
           </div>
@@ -56,17 +57,20 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="text-gray-400">
               <li className="mb-2">
-                <a href="#" className="hover:text-white">
+                <Link href="/" className="hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-white">
+                <a href="/about/about-us" className="hover:text-white">
                   About
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-white">
+                <a
+                  href="/services/general-services"
+                  className="hover:text-white"
+                >
                   Our Services
                 </a>
               </li>
