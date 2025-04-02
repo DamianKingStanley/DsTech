@@ -33,7 +33,7 @@ const Navbar = () => {
       name: "About",
       dropdown: ["About Us", "Our Team", "Values", "Privacy Policy"],
     },
-    { name: "Founder", href: "/https://kingdamian.netlify.app/" },
+    { name: "Founder", href: "https://kingdamian.netlify.app/" },
     { name: "Contact", href: "/contact" },
   ];
 

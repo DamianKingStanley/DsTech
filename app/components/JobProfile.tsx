@@ -167,9 +167,9 @@ const JobProfile = () => {
                   <h3 className="text-2xl font-bold mb-4 text-white">
                     {project.title}
                   </h3>
-                  <p className="text-white/90 mb-6 flex-grow">
+                  {/* <p className="text-white/90 mb-6 flex-grow">
                     {project.description}
-                  </p>
+                  </p> */}
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-2 mb-6">

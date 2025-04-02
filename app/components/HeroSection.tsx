@@ -145,7 +145,7 @@ const HeroSection = () => {
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-full transition-all duration-300"
               >
-                Start Your Project
+                Reach Out
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"

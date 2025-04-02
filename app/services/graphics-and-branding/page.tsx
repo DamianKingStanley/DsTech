@@ -293,7 +293,7 @@ export default function GraphicsAndBranding() {
               designs.
             </p>
             <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all">
-              Start Your Project
+              Reach Out Today
               <FaArrowRight className="ml-2" />
             </button>
           </motion.div>
