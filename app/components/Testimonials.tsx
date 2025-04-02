@@ -1,106 +1,252 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
-import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+
+import { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
     name: "John Doe",
     feedback:
-      "This company transformed our business with an amazing mobile app! Highly recommended!",
-    position: "CEO, Tech Solutions",
+      "QUORTEK's mobile app transformed our customer engagement. Their team delivered beyond our expectations with innovative solutions that drove 3x more conversions.",
+    position: "CEO, TechSolutions Inc.",
+    avatar: "/avatars/1.jpg", // Replace with actual paths
   },
   {
     name: "Jane Smith",
     feedback:
-      "The website they built for us is fast, responsive, and user-friendly. We couldn’t be happier!",
+      "The website QUORTEK built for us loads 60% faster than our previous one and has significantly improved our SEO rankings. Their attention to detail is remarkable.",
     position: "Marketing Director, BrandX",
+    avatar: "/avatars/2.jpg",
   },
   {
     name: "Michael Johnson",
     feedback:
-      "Outstanding AI solutions! Their machine learning expertise helped automate our workflow.",
-    position: "Operations Manager, DataCorp",
+      "Their AI implementation automated 80% of our manual processes. The QUORTEK team understood our needs perfectly and delivered ahead of schedule.",
+    position: "CTO, DataCorp",
+    avatar: "/avatars/3.jpg",
   },
   {
     name: "Emily Williams",
     feedback:
-      "Exceptional customer service and support. They truly care about their clients!",
+      "After their tech coaching, our team's productivity increased by 40%. The practical, hands-on approach made complex concepts easy to implement immediately.",
     position: "Founder, StartupHub",
+    avatar: "/avatars/4.jpg",
   },
   {
     name: "David Brown",
     feedback:
-      "Their e-commerce solutions helped us scale our online store to the next level!",
-    position: "E-commerce Manager, ShopEase",
-  },
-  {
-    name: "Sophia Martinez",
-    feedback:
-      "From branding to digital marketing, they handled everything seamlessly. A game-changer!",
-    position: "Creative Director, Visionary Designs",
+      "Our e-commerce platform scaled seamlessly during peak seasons thanks to QUORTEK's robust architecture. Their support team is incredibly responsive.",
+    position: "E-commerce Director, ShopEase",
+    avatar: "/avatars/5.jpg",
   },
 ];
 
-export default function Testimonials() {
+const TestimonialsShowcase = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalSlides = Math.ceil(testimonials.length / 3);
+  const [direction, setDirection] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
 
-  // Memoize nextSlide function to prevent re-creation
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-  }, [totalSlides]);
+  // 3D tilt effect
+  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
+  const rotateX = useTransform(x, [-100, 100], [15, -15]);
 
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
-
-  // Automatic slide transition
+  // Auto-rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 5000); // Change slide every 5 seconds
-
+      if (!isHovered) {
+        setDirection(1);
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }
+    }, 6000);
     return () => clearInterval(interval);
-  }, [nextSlide]); // Now useCallback ensures `nextSlide` doesn't change unnecessarily
+  }, [isHovered]);
+
+  const nextTestimonial = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setDirection(-1);
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  // Animation variants
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.32, 0.72, 0, 1],
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0,
+      scale: 0.9,
+      transition: {
+        duration: 0.8,
+        ease: [0.32, 0.72, 0, 1],
+      },
+    }),
+  };
 
   return (
-    <section className="py-16 text-center bg-white">
-      <h2 className="text-2xl font-bold text-blue-700 mb-6">
-        What Our Clients Say
-      </h2>
-      <div className="relative overflow-hidden max-w-5xl mx-auto py-8">
-        <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="w-1/3 min-w-full md:min-w-[33.33%] p-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg mx-2 h-64">
-                <div className="flex justify-center mb-4 text-blue-700 text-2xl">
-                  <FaQuoteLeft />
-                </div>
-                <p className="text-gray-700 italic">{testimonial.feedback}</p>
-                <h3 className="text-xl font-bold mt-4">{testimonial.name}</h3>
-                <p className="text-gray-500 text-sm">{testimonial.position}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section className="relative py-28 bg-gradient-to-b from-gray-900 to-black overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-500 filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-blue-500 filter blur-3xl"></div>
+      </div>
 
-        {/* Navigation Buttons */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 transition"
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <FaChevronLeft />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 transition"
+          <span className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase">
+            Client Voices
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6">
+            Trusted by Industry Leaders
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Do not just take our word for it - hear what our clients say about
+            working with QUORTEK
+          </p>
+        </motion.div>
+
+        {/* Testimonials Carousel */}
+        <div
+          className="relative max-w-5xl mx-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          ref={carouselRef}
         >
-          <FaChevronRight />
-        </button>
+          <AnimatePresence custom={direction} initial={false}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl p-10"
+              style={{
+                rotateY,
+                rotateX,
+                transformPerspective: 1000,
+              }}
+              onMouseMove={(e) => {
+                const rect = carouselRef.current?.getBoundingClientRect();
+                if (rect) {
+                  x.set(e.clientX - rect.left - rect.width / 2);
+                }
+              }}
+              onMouseLeave={() => {
+                x.set(0);
+              }}
+            >
+              <div className="flex flex-col md:flex-row gap-10 items-center">
+                {/* Client Avatar */}
+                <motion.div
+                  className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/10 shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+                    {/* Replace with actual Image component */}
+                    <span className="text-4xl text-white">
+                      {testimonials[currentIndex].name.charAt(0)}
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Testimonial Content */}
+                <div className="text-center md:text-left">
+                  <FaQuoteLeft className="text-3xl text-white/20 mb-6 mx-auto md:mx-0" />
+                  <p className="text-sm text-gray-300 mb-8 leading-relaxed">
+                    {testimonials[currentIndex].feedback}
+                  </p>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {testimonials[currentIndex].name}
+                    </h3>
+                    <p className="text-gray-400">
+                      {testimonials[currentIndex].position}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation */}
+          <div
+            className={`flex justify-center mt-12 gap-4 transition-opacity ${
+              isHovered ? "opacity-100" : "md:opacity-30 hover:opacity-100"
+            }`}
+          >
+            <motion.button
+              onClick={prevTestimonial}
+              className="p-4 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronLeft className="text-xl" />
+            </motion.button>
+
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentIndex ? "bg-white w-6" : "bg-white/30"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <motion.button
+              onClick={nextTestimonial}
+              className="p-4 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FiChevronRight className="text-xl" />
+            </motion.button>
+          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default TestimonialsShowcase;

@@ -1,118 +1,178 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+
+// Animation variants for footer sections
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+// Animation for social icons
+const iconVariants = {
+  hover: { scale: 1.2, transition: { duration: 0.3 } },
+};
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-black text-white py-16">
+      <div className="container mx-auto px-6 lg:px-20">
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Information */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">DS TECH</h2>
-            <h3 className="text-xl font-semibold mb-4">
-              Software Development Company
+          <motion.div
+            className="mb-8"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4">QUORTEK</h2>
+            <h3 className="text-lg font-semibold mb-4">
+              Innovate. Build. Learn.
             </h3>
-            <p className="text-gray-400 mb-4">
-              At DS Tech, we believe that our commitment to innovation,
-              integrity, collaboration, customer focus, results-orientation, and
-              continuous improvement sets us apart from the competition.
+            <p className="text-gray-400 text-sm mb-6">
+              QUORTEK is a tech company dedicated to building cutting-edge
+              solutions and empowering the next generation through our
+              Practically Tech Coaching program.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <FaFacebook className="text-2xl" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <FaTwitter className="text-2xl" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <FaLinkedin className="text-2xl" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <FaInstagram className="text-2xl" />
-              </a>
+              {[
+                {
+                  icon: <FaFacebook />,
+                  url: "https://facebook.com/king.stan.01",
+                },
+                { icon: <FaTwitter />, url: "https://x.com/_king_Damian?s=09" },
+                {
+                  icon: <FaLinkedin />,
+                  url: "https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                },
+                {
+                  icon: <FaInstagram />,
+                  url: "https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1",
+                },
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.url}
+                  className="text-gray-400"
+                  whileHover="hover"
+                  variants={iconVariants}
+                >
+                  <span className="text-2xl">{social.icon}</span>
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Information */}
-          <div className="mb-8">
+          <motion.div
+            className="mb-8"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            viewport={{ once: true }}
+          >
             <h3 className="text-xl font-semibold mb-4">Get In Touch</h3>
-            <ul className="text-gray-400">
-              <li className="mb-2">
+            <ul className="text-gray-400 text-sm">
+              <li className="mb-3">
                 <strong>Location:</strong> 28 Choba Road, Port Harcourt, Rivers
-                State, Nigeria.
+                State, Nigeria
               </li>
-              <li className="mb-2">
-                <strong>Email:</strong> info@dstech.com
+              <li className="mb-3">
+                <strong>Email:</strong>{" "}
+                <a href="mailto:info@quortek.com" className="hover:text-white">
+                  info@quortek.com
+                </a>
               </li>
-              <li className="mb-2">
-                <strong>Phone:</strong> +2349159822561
+              <li className="mb-3">
+                <strong>Phone:</strong>{" "}
+                <a href="tel:+2349159822561" className="hover:text-white">
+                  +234 915 982 2561
+                </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div className="mb-8">
+          <motion.div
+            className="mb-8"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            viewport={{ once: true }}
+          >
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-            <ul className="text-gray-400">
-              <li className="mb-2">
+            <ul className="text-gray-400 text-sm">
+              <li className="mb-3">
                 <Link href="/" className="hover:text-white">
                   Home
                 </Link>
               </li>
-              <li className="mb-2">
-                <a href="/about/about-us" className="hover:text-white">
-                  About
-                </a>
+              <li className="mb-3">
+                <Link href="/about/about-us" className="hover:text-white">
+                  About Us
+                </Link>
               </li>
-              <li className="mb-2">
-                <a
+              <li className="mb-3">
+                <Link
                   href="/services/general-services"
                   className="hover:text-white"
                 >
-                  Our Services
-                </a>
+                  Services
+                </Link>
               </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-white">
-                  Our Products
-                </a>
+              <li className="mb-3">
+                <Link href="/contact" className="hover:text-white">
+                  Contact Us
+                </Link>
               </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-white">
+              <li className="mb-3">
+                <Link href="/about/privacy-policy" className="hover:text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Newsletter Subscription */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold mb-4">Subscribe</h3>
-            <p className="text-gray-400 mb-4">
-              Subscribe To Our Newsletter To Get Our Update News!
+          <motion.div
+            className="mb-8"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl font-semibold mb-4">Stay Updated</h3>
+            <p className="text-gray-400 text-sm mb-4">
+              Subscribe to our newsletter for the latest updates and insights.
             </p>
             <div className="flex">
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-full p-2 rounded-l-lg bg-gray-800 text-white focus:outline-none"
+                className="w-full p-3 rounded-l-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-gray-500"
               />
-              <button className="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700 transition duration-300">
+              <button className="bg-white text-black px-6 py-3 rounded-r-full font-semibold hover:bg-gray-200 transition duration-300">
                 Subscribe
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
-          <p>
-            &copy; 2019 - {new Date().getFullYear()} DS Tech Company. All rights
-            reserved.
-          </p>
-        </div>
+        <motion.div
+          className="border-t border-gray-800 pt-8 mt-12 text-center text-gray-400 text-sm"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <p>© 2025 QUORTEK. All rights reserved.</p>
+        </motion.div>
       </div>
     </footer>
   );

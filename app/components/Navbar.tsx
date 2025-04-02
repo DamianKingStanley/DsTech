@@ -2,285 +2,314 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import {
+  motion,
+  AnimatePresence,
+  LazyMotion,
+  domAnimation,
+} from "framer-motion";
 
-const Navbar: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const navbarRef = useRef<HTMLElement>(null);
 
-  const mobileMenuRef = useRef<HTMLDivElement | null>(null); // Ref for mobile menu
-  const navbarRef = useRef<HTMLDivElement | null>(null); // Ref for navbar container
-
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  // Close the mobile menu when clicking outside of the navbar
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      navbarRef.current &&
-      !navbarRef.current.contains(event.target as Node)
-    ) {
-      setIsMobileMenuOpen(false);
-    }
-  };
-
-  // Add event listener for outside click
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleDropdown = (dropdown: string | null) => {
-    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
-  };
-
-  const servicesDropdown = [
-    "General Services",
-    "Android and IOS Apps",
-    "Website Development",
-    "Software Development",
-    "Tech Coaching",
-    "Graphics and Branding",
+  // Navigation items with dropdowns
+  const navItems = [
+    { name: "Home", href: "/" },
+    {
+      name: "Services",
+      dropdown: [
+        "General Services",
+        "Android and IOS Apps",
+        "Website Development",
+        "Software Development",
+        "Tech Coaching",
+        "Graphics and Branding",
+      ],
+    },
+    {
+      name: "About",
+      dropdown: ["About Us", "Our Team", "Values", "Privacy Policy"],
+    },
+    { name: "Founder", href: "/https://kingdamian.netlify.app/" },
+    { name: "Contact", href: "/contact" },
   ];
 
-  const aboutDropdown = ["About Us", "Our Team", "Values", "Privacy Policy"];
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Toggle dropdown
+  const toggleDropdown = (name: string) => {
+    setActiveDropdown(activeDropdown === name ? null : name);
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: -20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.2,
+        ease: "easeIn",
+      },
+    },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
-    <nav ref={navbarRef} className="bg-blue-600 text-white sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16 text-sm font-semibold">
-          {/* Logo */}
-          <Link href="/" className="text-xl font-bold">
-            DS TECH
-          </Link>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
-            <Link href="/" className="hover:text-gray-200 text-sm">
-              Home
-            </Link>
-
-            {/* Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => toggleDropdown("services")}
-              onMouseLeave={() => toggleDropdown(null)}
+    <LazyMotion features={domAnimation}>
+      <motion.nav
+        ref={navbarRef}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        className="fixed w-full top-0 z-50 backdrop-blur-lg bg-gradient-to-br from-gray-900 via-black to-gray-900 border-b border-white/10"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center"
             >
-              <button className="hover:text-gray-200 flex items-center">
-                Our Services
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              <Link
+                href="/"
+                className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                QUORTEK
+              </Link>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <motion.ul
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex space-x-6"
+              >
+                {navItems.map((item) => (
+                  <motion.li
+                    key={item.name}
+                    variants={itemVariants}
+                    className="relative"
+                  >
+                    {item.dropdown ? (
+                      <div
+                        onMouseEnter={() => toggleDropdown(item.name)}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                        className="relative"
+                      >
+                        <button
+                          onClick={() => toggleDropdown(item.name)}
+                          className="flex items-center space-x-1 text-white/90 hover:text-white transition-colors duration-200"
+                        >
+                          <span>{item.name}</span>
+                          {activeDropdown === item.name ? (
+                            <FiChevronUp className="h-4 w-4" />
+                          ) : (
+                            <FiChevronDown className="h-4 w-4" />
+                          )}
+                        </button>
+
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              variants={dropdownVariants}
+                              initial="hidden"
+                              animate="visible"
+                              exit="hidden"
+                              className="absolute left-0 mt-2 w-56 origin-top-right rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 overflow-hidden"
+                            >
+                              <div className="p-2 space-y-1">
+                                {item.dropdown.map((subItem) => (
+                                  <Link
+                                    key={subItem}
+                                    href={`/${item.name.toLowerCase()}/${subItem
+                                      .toLowerCase()
+                                      .replace(/\s+/g, "-")}`}
+                                    className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200"
+                                    onClick={() => setActiveDropdown(null)}
+                                  >
+                                    {subItem}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href || "#"}
+                        className="text-white/90 hover:text-white transition-colors duration-200"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </motion.li>
+                ))}
+              </motion.ul>
+
+              {/* <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/contact"
+                  className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openDropdown === "services" && (
-                <div className="absolute bg-white text-gray-800  shadow-lg mt-2 py-2 w-48">
-                  {servicesDropdown.map((service, index) => (
-                    <Link
-                      key={index}
-                      href={`/services/${service
-                        .toLowerCase()
-                        .replace(/ /g, "-")}`}
-                      className="block px-4 py-2 hover:bg-blue-100"
-                    >
-                      {service}
-                    </Link>
-                  ))}
-                </div>
-              )}
+                  Get Started
+                </Link>
+              </motion.div> */}
             </div>
 
-            {/* About Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => toggleDropdown("about")}
-              onMouseLeave={() => toggleDropdown(null)}
+            {/* Mobile menu button */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className="lg:hidden p-2 rounded-lg text-white focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
             >
-              <button className="hover:text-gray-200 flex items-center">
-                About Us
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openDropdown === "about" && (
-                <div className="absolute bg-white text-gray-800  shadow-lg mt-2 py-2 w-48">
-                  {aboutDropdown.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={`/about/${item.toLowerCase().replace(/ /g, "-")}`}
-                      className="block px-4 py-2 hover:bg-blue-100"
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
+              {isOpen ? (
+                <FiX className="h-6 w-6" />
+              ) : (
+                <FiMenu className="h-6 w-6" />
               )}
-            </div>
-
-            {/* <Link href="/career" className="hover:text-gray-200">
-              Career
-            </Link>
-            <Link href="/products" className="hover:text-gray-200">
-              Our Products
-            </Link> */}
-            <Link href="/contact" className="hover:text-gray-200">
-              Contact Us
-            </Link>
+            </motion.button>
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden" onClick={toggleMobileMenu}>
-            {isMobileMenuOpen ? (
-              <FaTimes className="text-lg" />
-            ) : (
-              <FaBars className="text-lg" />
-            )}
-          </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div
-            ref={mobileMenuRef}
-            className="md:hidden bg-white mt-2 pb-8 text-lg font-semibold text-black leading-10 space-y-3"
-          >
-            <Link
-              href="/"
-              className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden overflow-hidden"
             >
-              Home
-            </Link>
+              <div className="px-4 pb-6 pt-2 space-y-2">
+                {navItems.map((item) => (
+                  <div
+                    key={item.name}
+                    className="border-b border-white/10 last:border-0"
+                  >
+                    {item.dropdown ? (
+                      <>
+                        <button
+                          onClick={() => toggleDropdown(item.name)}
+                          className="flex justify-between items-center w-full py-4 text-left text-white/90 hover:text-white"
+                        >
+                          <span>{item.name}</span>
+                          {activeDropdown === item.name ? (
+                            <FiChevronUp className="h-5 w-5" />
+                          ) : (
+                            <FiChevronDown className="h-5 w-5" />
+                          )}
+                        </button>
 
-            {/* Services Dropdown */}
-            <div className="px-4 py-2">
-              <button
-                className="w-full flex justify-between items-center"
-                onClick={() => toggleDropdown("services")}
-              >
-                <span>Our Services</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="pl-4 space-y-2"
+                            >
+                              {item.dropdown.map((subItem) => (
+                                <Link
+                                  key={subItem}
+                                  href={`/${item.name.toLowerCase()}/${subItem
+                                    .toLowerCase()
+                                    .replace(/\s+/g, "-")}`}
+                                  className="block py-3 text-white/70 hover:text-white"
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setActiveDropdown(null);
+                                  }}
+                                >
+                                  {subItem}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href || "#"}
+                        className="block py-4 text-white/90 hover:text-white"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+
+                <Link
+                  href="/contact"
+                  className="block w-full mt-4 px-4 py-3 text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-medium"
+                  onClick={() => setIsOpen(false)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openDropdown === "services" && (
-                <div className="pl-4">
-                  {servicesDropdown.map((service, index) => (
-                    <Link
-                      key={index}
-                      href={`/services/${service
-                        .toLowerCase()
-                        .replace(/ /g, "-")}`}
-                      className="block py-2 hover:bg-blue-600 hover:text-white"
-                      onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
-                    >
-                      {service}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* About Dropdown */}
-            <div className="px-4 py-2">
-              <button
-                className="w-full flex justify-between items-center"
-                onClick={() => toggleDropdown("about")}
-              >
-                <span>About Us</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openDropdown === "about" && (
-                <div className="pl-4">
-                  {aboutDropdown.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={`/about/${item.toLowerCase().replace(/ /g, "-")}`}
-                      className="block py-2 hover:bg-blue-600 hover:text-white"
-                      onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* <Link
-              href="/career"
-              className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
-            >
-              Career
-            </Link>
-            <Link
-              href="/products"
-              className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
-            >
-              Our Products
-            </Link> */}
-            <Link
-              href="/contact"
-              className="block px-4 py-2 hover:bg-blue-600 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)} // Close menu when clicked
-            >
-              Contact Us
-            </Link>
-          </div>
-        )}
-      </div>
-    </nav>
+                  Contact Us
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </LazyMotion>
   );
 };
 

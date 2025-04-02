@@ -1,181 +1,388 @@
 "use client";
 
+import React from "react";
+import { motion, useTransform, useMotionValue } from "framer-motion";
+import {
+  FaCogs,
+  FaShieldAlt,
+  FaTachometerAlt,
+  FaCode,
+  FaRocket,
+  FaComments,
+  FaArrowRight,
+} from "react-icons/fa";
+
+// Software development services
+const softwareServices = [
+  {
+    name: "Custom Software Design",
+    desc: "We create tailored software solutions that align with your business goals, ensuring intuitive and robust applications.",
+    icon: <FaCogs className="text-4xl" />,
+    color: "from-purple-600 to-indigo-700",
+  },
+  {
+    name: "Cutting-Edge Technologies",
+    desc: "We leverage modern tools like cloud computing, AI, and machine learning to build high-performance software.",
+    icon: <FaCode className="text-4xl" />,
+    color: "from-blue-600 to-cyan-700",
+  },
+  {
+    name: "Security & Scalability",
+    desc: "Our software is designed to be secure and scalable, growing with your business while maintaining optimal performance.",
+    icon: <FaShieldAlt className="text-4xl" />,
+    color: "from-amber-600 to-orange-700",
+  },
+];
+
+// Benefits of choosing QUORTEK for software development
+const benefits = [
+  {
+    title: "Tailored Solutions",
+    desc: "We build software specifically designed to address your unique business challenges.",
+    icon: <FaCogs className="text-3xl" />,
+    color: "bg-blue-600/10 border-blue-600/20",
+  },
+  {
+    title: "Uncompromising Security",
+    desc: "We integrate top-tier security features to ensure data protection and business continuity.",
+    icon: <FaShieldAlt className="text-3xl" />,
+    color: "bg-purple-600/10 border-purple-600/20",
+  },
+  {
+    title: "High Performance",
+    desc: "Our software is optimized for speed, seamless operations, and a responsive user experience.",
+    icon: <FaTachometerAlt className="text-3xl" />,
+    color: "bg-amber-600/10 border-amber-600/20",
+  },
+];
+
+// Development approach principles
+const approachPrinciples = [
+  {
+    title: "Agile Development",
+    desc: "We deliver software in iterative cycles, refining and improving based on feedback.",
+    icon: <FaRocket className="text-4xl" />,
+    color: "from-emerald-600 to-teal-700",
+  },
+  {
+    title: "Continuous Improvement",
+    desc: "We constantly update and enhance your software to keep up with technological advancements.",
+    icon: <FaCode className="text-4xl" />,
+    color: "from-pink-600 to-rose-700",
+  },
+  {
+    title: "Transparent Communication",
+    desc: "We maintain clear communication throughout the process, keeping you informed and involved.",
+    icon: <FaComments className="text-4xl" />,
+    color: "from-green-600 to-lime-700",
+  },
+];
+
 export default function SoftwareDevelopment() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [10, -10]);
+  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const cardHover = {
+    hover: {
+      y: -15,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
+    },
+  };
+
   return (
-    <div className="bg-white text-black">
+    <div className="bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
-      <section className="relative w-full h-[400px] bg-[url('/images/app.png')] bg-cover bg-center text-white">
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="text-center p-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-              Expert Software Development for the Modern Business
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl font-light opacity-80">
-              We create innovative software that transforms your business. Our
-              solutions are built to scale, ensuring long-term success and
-              operational excellence.
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gray-500 filter blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-gray-600 filter blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.span
+              variants={item}
+              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+            >
+              Software Excellence
+            </motion.span>
+
+            <motion.h1
+              variants={item}
+              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+            >
+              Software Development by QUORTEK
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+            >
+              We create innovative, scalable, and secure software to transform
+              your business.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Software Services Section */}
+      <section className="relative py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-20"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-3xl md:text-4xl font-bold mb-6"
+            >
+              Building Scalable Solutions
+            </motion.h2>
+            <motion.p
+              variants={item}
+              className="text-xl text-gray-400 max-w-3xl mx-auto"
+            >
+              We craft custom software with precision, scalability, and security
+              at its core.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {softwareServices.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover="hover"
+                className="h-full perspective-1000"
+              >
+                <motion.div
+                  variants={cardHover}
+                  className={`h-full bg-gradient-to-br ${service.color} rounded-2xl overflow-hidden shadow-xl p-8 flex flex-col`}
+                  style={{
+                    rotateX,
+                    rotateY,
+                    transformPerspective: 1000,
+                  }}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    x.set(e.clientX - rect.left - rect.width / 2);
+                    y.set(e.clientY - rect.top - rect.height / 2);
+                  }}
+                  onMouseLeave={() => {
+                    x.set(0);
+                    y.set(0);
+                  }}
+                >
+                  <div className="mb-6 flex justify-center">
+                    <motion.div
+                      className="p-4 bg-white/10 rounded-xl backdrop-blur-sm"
+                      whileHover={{
+                        rotate: 15,
+                        scale: 1.1,
+                        backgroundColor: "rgba(255,255,255,0.2)",
+                      }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {service.icon}
+                    </motion.div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">
+                    {service.name}
+                  </h3>
+                  <p className="text-white/90">{service.desc}</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="relative py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-20"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-3xl md:text-4xl font-bold mb-6"
+            >
+              Why Choose QUORTEK for Software Development
+            </motion.h2>
+            <motion.p
+              variants={item}
+              className="text-xl text-gray-400 max-w-3xl mx-auto"
+            >
+              We combine technical expertise with innovation to deliver software
+              that drives results.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover="hover"
+                className="h-full"
+              >
+                <motion.div
+                  variants={cardHover}
+                  className={`h-full ${benefit.color} rounded-2xl overflow-hidden shadow-xl p-8 border backdrop-blur-sm flex flex-col items-center text-center`}
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
+                  <p className="text-gray-300">{benefit.desc}</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Approach Section */}
+      <section className="relative py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-20"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-3xl md:text-4xl font-bold mb-6"
+            >
+              Our Approach to Software Development
+            </motion.h2>
+            <motion.p
+              variants={item}
+              className="text-xl text-gray-400 max-w-3xl mx-auto"
+            >
+              We follow a clear and strategic process to ensure quality and
+              success.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {approachPrinciples.map((principle, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover="hover"
+                className="h-full perspective-1000"
+              >
+                <motion.div
+                  variants={cardHover}
+                  className={`h-full bg-gradient-to-br ${principle.color} rounded-2xl overflow-hidden shadow-xl p-8 flex flex-col`}
+                  style={{
+                    rotateX,
+                    rotateY,
+                    transformPerspective: 1000,
+                  }}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    x.set(e.clientX - rect.left - rect.width / 2);
+                    y.set(e.clientY - rect.top - rect.height / 2);
+                  }}
+                  onMouseLeave={() => {
+                    x.set(0);
+                    y.set(0);
+                  }}
+                >
+                  <div className="mb-6 flex justify-center">
+                    <motion.div
+                      className="p-4 bg-white/10 rounded-xl backdrop-blur-sm"
+                      whileHover={{
+                        rotate: 15,
+                        scale: 1.1,
+                        backgroundColor: "rgba(255,255,255,0.2)",
+                      }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {principle.icon}
+                    </motion.div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">
+                    {principle.title}
+                  </h3>
+                  <p className="text-white/90">{principle.desc}</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-20">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-12 shadow-2xl"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">
+              Ready to build your software solution?
+            </h3>
+            <p className="text-xl text-gray-300 mb-8">
+              Let’s discuss how we can create a scalable and secure application
+              for your business.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content Section */}
-      <section className="px-6 sm:px-12 md:px-24 py-16 bg-white text-black">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">
-            Building Scalable and Secure Software Solutions
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-12">
-            Our team specializes in crafting custom software that meets the
-            unique challenges of your business. From concept to delivery, we
-            take a strategic approach to ensure each solution is crafted with
-            precision, scalability, and security at its core. We employ modern
-            technologies and industry best practices to build applications that
-            evolve with your growing business needs.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-            <div className="bg-white p-6 rounded-xl shadow-lg transition-transform hover:scale-105 duration-300">
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                Custom Software Design
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                We begin with a thorough understanding of your business goals to
-                create custom software solutions that fit your unique
-                requirements. Whether it&apos;s a web, mobile, or enterprise
-                application, we ensure that each product is intuitive and
-                robust.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-lg transition-transform hover:scale-105 duration-300">
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                Cutting-Edge Technologies
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                We use the latest technologies to build modern, scalable
-                software. From cloud computing to machine learning and AI, we
-                leverage state-of-the-art tools to deliver reliable,
-                high-performance solutions.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-lg transition-transform hover:scale-105 duration-300">
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                Robust Security & Scalability
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                Security is our top priority. We ensure that your software is
-                not only secure but also scalable, designed to grow alongside
-                your business while maintaining optimal performance.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="bg-white py-16">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8 p-10">
-            Why Partner with DS Tech for Software Development?
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-12">
-            We combine technical expertise, business insight, and a passion for
-            innovation to deliver software that drives meaningful outcomes.
-            Here&apos;s why we&apos;re the trusted choice for software
-            development:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="mb-4 p-3 bg-indigo-600 text-white rounded-full">
-                <i className="fas fa-cogs text-2xl"></i>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
-                Tailored Solutions
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                We don’t just build software; we create solutions designed
-                specifically for your business challenges. Our approach is
-                always personalized and client-focused.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="mb-4 p-3 bg-indigo-600 text-white rounded-full">
-                <i className="fas fa-shield-alt text-2xl"></i>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
-                Uncompromising Security
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                We integrate top-tier security features in every software
-                product to ensure the highest level of data protection and
-                business continuity.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="mb-4 p-3 bg-indigo-600 text-white rounded-full">
-                <i className="fas fa-tachometer-alt text-2xl"></i>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
-                High Performance
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600">
-                Our software is optimized for high performance, ensuring fast
-                load times, seamless operations, and a responsive user
-                experience at scale.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Approach Section */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">
-            Our Approach to Software Development
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-12">
-            We adopt a clear and concise approach to software development,
-            following these key principles:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold  mb-4">
-                Agile Development
-              </h3>
-              <p className="text-base sm:text-lg ">
-                Our agile methodology enables us to deliver software in
-                iterative cycles, allowing us to refine and improve the product
-                continuously based on feedback.
-              </p>
-            </div>
-
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-                Continuous Improvement
-              </h3>
-              <p className="text-base sm:text-lg ">
-                We believe in ongoing software improvement, constantly updating
-                and enhancing your system to keep up with new technological
-                advancements and business needs.
-              </p>
-            </div>
-
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-                Transparent Communication
-              </h3>
-              <p className="text-base sm:text-lg ">
-                We maintain clear and transparent communication throughout the
-                entire development process, ensuring you are always informed and
-                involved in key decisions.
-              </p>
-            </div>
-          </div>
+            <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all">
+              Start Your Project
+              <FaArrowRight className="ml-2" />
+            </button>
+          </motion.div>
         </div>
       </section>
     </div>

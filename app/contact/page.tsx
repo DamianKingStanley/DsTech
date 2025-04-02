@@ -1,14 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
+  FaEnvelope,
+  FaPhone,
   FaFacebook,
   FaTwitter,
   FaLinkedin,
   FaInstagram,
-  FaEnvelope,
-  FaPhone,
+  FaArrowRight,
 } from "react-icons/fa";
+
+// Animation variants
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};
+
+const inputVariants = {
+  focus: {
+    scale: 1.02,
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    transition: { duration: 0.3 },
+  },
+  blur: {
+    scale: 1,
+    borderColor: "rgba(255, 255, 255, 0.2)",
+    transition: { duration: 0.3 },
+  },
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +70,7 @@ const Contact = () => {
 
     setStatus("Sending...");
 
-    const res = await fetch("http://localhost:3000/api/contact", {
+    const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -46,115 +86,201 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact bg-gray-50 py-12">
-      <div className="container mx-auto px-6 md:px-12 py-8">
-        <h1 className="text-4xl font-semibold text-gray-800 text-center mb-8">
-          Contact Us
-        </h1>
+    <section className="bg-gradient-to-b from-black to-gray-900 text-white py-20 mt-12">
+      <div className="container mx-auto px-6">
+        {/* Hero Section */}
+        <motion.div
+          className="text-center mb-20"
+          initial="hidden"
+          whileInView="visible"
+          variants={container}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <motion.span
+            variants={item}
+            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+          >
+            Let’s Connect
+          </motion.span>
 
-        <div className="flex flex-col md:flex-row justify-between items-center bg-white p-8 rounded-lg shadow-lg mb-12">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold text-gray-700">Get in Touch</h2>
-            <p className="text-lg text-gray-600 mt-2">
-              Have a question or want to work with us? Reach out, and we&apos;ll
-              respond as soon as possible.
-            </p>
-            <div className="mt-4 flex flex-col space-y-3">
-              <p className="flex items-center space-x-2 text-lg text-gray-600">
-                <FaEnvelope className="text-blue-500" />
-                <span>contact@dstechcompany.com</span>
-              </p>
-              <p className="flex items-center space-x-2 text-lg text-gray-600">
-                <FaPhone className="text-green-500" />
-                <span>+2349159822561</span>
-              </p>
-            </div>
-            <div className="mt-6 flex space-x-6 text-2xl">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                className="text-blue-400 hover:text-blue-600"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                className="text-blue-700 hover:text-blue-900"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                className="text-pink-600 hover:text-pink-800"
-              >
-                <FaInstagram />
-              </a>
-            </div>
-          </div>
-        </div>
+          <motion.h1
+            variants={item}
+            className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+          >
+            Contact QUORTEK
+          </motion.h1>
 
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-            Send Us a Message
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-gray-700 font-medium">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
-                placeholder="Enter your name"
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 font-medium">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 font-medium">Message</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
-                placeholder="Write your message"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+          <motion.p
+            variants={item}
+            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+          >
+            Have a question or want to work with us? Reach out, and we’ll get
+            back to you soon.
+          </motion.p>
+        </motion.div>
+
+        {/* Contact Info and Form Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Contact Information */}
+          <motion.div
+            className="bg-gray-800 rounded-2xl p-8 shadow-xl"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-2xl md:text-3xl font-bold mb-6"
             >
-              Send Message
-            </button>
-          </form>
-          {status && (
-            <p className="mt-4 text-center text-lg font-medium text-gray-700">
-              {status}
-            </p>
-          )}
+              Get in Touch
+            </motion.h2>
+            <motion.p variants={item} className="text-lg text-gray-400 mb-8">
+              We’re here to help you with your tech needs. Contact us via email,
+              phone, or social media.
+            </motion.p>
+            <div className="space-y-6">
+              <motion.div
+                variants={item}
+                className="flex items-center space-x-3 text-lg"
+              >
+                <FaEnvelope className="text-gray-400" />
+                <span>contact@quortek.com</span>
+              </motion.div>
+              <motion.div
+                variants={item}
+                className="flex items-center space-x-3 text-lg"
+              >
+                <FaPhone className="text-gray-400" />
+                <span>+234 915 982 2561</span>
+              </motion.div>
+              <motion.div
+                variants={item}
+                className="flex space-x-6 text-2xl mt-6"
+              >
+                <a
+                  href="https://facebook.com/king.stan.01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  <FaFacebook />
+                </a>
+                <a
+                  href="https://x.com/_king_Damian?s=09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  <FaTwitter />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  <FaLinkedin />
+                </a>
+                <a
+                  href="https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  <FaInstagram />
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            className="bg-gray-800 rounded-2xl p-8 shadow-xl"
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-2xl md:text-3xl font-bold mb-6"
+            >
+              Send Us a Message
+            </motion.h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <motion.div variants={item}>
+                <label className="block text-gray-400 font-medium mb-2">
+                  Name
+                </label>
+                <motion.input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                  placeholder="Enter your name"
+                  whileFocus="focus"
+                  initial="blur"
+                  variants={inputVariants}
+                />
+              </motion.div>
+              <motion.div variants={item}>
+                <label className="block text-gray-400 font-medium mb-2">
+                  Email
+                </label>
+                <motion.input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                  placeholder="Enter your email"
+                  whileFocus="focus"
+                  initial="blur"
+                  variants={inputVariants}
+                />
+              </motion.div>
+              <motion.div variants={item}>
+                <label className="block text-gray-400 font-medium mb-2">
+                  Message
+                </label>
+                <motion.textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"
+                  placeholder="Write your message"
+                  whileFocus="focus"
+                  initial="blur"
+                  variants={inputVariants}
+                ></motion.textarea>
+              </motion.div>
+              <motion.button
+                type="submit"
+                className="w-full bg-gradient-to-r from-white to-gray-200 text-black py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-gray-500/30 transition-all flex items-center justify-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Send Message
+                <FaArrowRight className="ml-2" />
+              </motion.button>
+            </form>
+            {status && (
+              <motion.p
+                className="mt-4 text-center text-lg font-medium text-gray-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                {status}
+              </motion.p>
+            )}
+          </motion.div>
         </div>
       </div>
     </section>

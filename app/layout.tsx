@@ -22,8 +22,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "DS Tech Software Development Company",
-  description: "The best tech Institution in Nigeria",
+  title: "Quortek",
+  description: "Building solutions and onboarding you into the tech space",
 };
 
 export default function RootLayout({
