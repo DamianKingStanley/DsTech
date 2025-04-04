@@ -8,12 +8,12 @@ import Image from "next/image";
 const JobProfile = () => {
   const projects = [
     {
-      title: "AfroTale Writing Platform",
+      title: "Crime and Criminal Check System",
       description:
         "Revolutionary platform empowering African writers to publish stories while enabling readers to discover authentic narratives. Features AI-powered recommendations and monetization tools.",
-      image: "/images/afrotales.png",
-      url: "https://www.afrotale.netlify.app",
-      tags: ["Next.js", "Node.js", "MongoDB"],
+      image: "/images/crime.png",
+      url: "https://npfcrimesystem.netlify.app/",
+      tags: ["React.js", "Node.js", "MongoDB"],
       accentColor: "from-purple-600 to-indigo-700",
     },
     {
@@ -99,7 +99,7 @@ const JobProfile = () => {
             variants={item}
             className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
           >
-            Our Portfolio
+            Few of Our Portfolio
           </motion.span>
 
           <motion.h2

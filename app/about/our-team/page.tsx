@@ -16,18 +16,21 @@ const teamMembers = [
   {
     name: "King Damian",
     position: "Founder & CEO",
-    image: "/images/king.png", // Placeholder image path
+    image:
+      "https://ik.imagekit.io/webmanagement/mytech/king.PNG?updatedAt=1743758060696", // Placeholder image path
     socialLinks: {
-      linkedin: "https://www.linkedin.com/in/kingdamian",
-      twitter: "https://twitter.com/kingdamian",
-      github: "https://github.com/kingdamian",
-      instagram: "https://instagram.com/kingdamian",
+      linkedin:
+        "https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      twitter: "https://x.com/_king_Damian?s=09",
+      github: "https://github.com/DamianKingStanley",
+      instagram: "https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1",
     },
   },
   {
     name: "Olaiya Mary",
     position: "Chief Technology Officer (CTO)",
-    image: "/images/mary.png", // Placeholder image path
+    image:
+      "https://ik.imagekit.io/webmanagement/mytech/mary.PNG?updatedAt=1743758060365", // Placeholder image path
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/olaiyamary",
       twitter: "https://twitter.com/olaiyamary",
