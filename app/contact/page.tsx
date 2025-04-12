@@ -175,7 +175,7 @@ const Contact = () => {
                   <FaTwitter />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  href="https://www.linkedin.com/in/damian-theking/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition"

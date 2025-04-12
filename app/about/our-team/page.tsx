@@ -20,7 +20,7 @@ const teamMembers = [
       "https://ik.imagekit.io/webmanagement/mytech/king.PNG?updatedAt=1743758060696", // Placeholder image path
     socialLinks: {
       linkedin:
-        "https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        "https://www.linkedin.com/in/damian-theking/",
       twitter: "https://x.com/_king_Damian?s=09",
       github: "https://github.com/DamianKingStanley",
       instagram: "https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1",

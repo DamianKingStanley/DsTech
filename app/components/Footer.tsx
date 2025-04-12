@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
                 { icon: <FaTwitter />, url: "https://x.com/_king_Damian?s=09" },
                 {
                   icon: <FaLinkedin />,
-                  url: "https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                  url: "https://www.linkedin.com/in/damian-theking/",
                 },
                 {
                   icon: <FaInstagram />,

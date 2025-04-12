@@ -18,7 +18,7 @@ const FloatingSocialIcons = () => {
         <FaTwitter />
       </a>
       <a
-        href="https://www.linkedin.com/in/damian-stanley-ba6aa422a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        href="https://www.linkedin.com/in/damian-theking/"
         target="_blank"
         className="text-blue-700 hover:text-blue-900 text-2xl"
       >
