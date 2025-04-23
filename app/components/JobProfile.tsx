@@ -8,30 +8,30 @@ import Image from "next/image";
 const JobProfile = () => {
   const projects = [
     {
-      title: "Crime and Criminal Check System",
+      title: "Prime Cargo",
       description:
-        "Revolutionary platform empowering African writers to publish stories while enabling readers to discover authentic narratives. Features AI-powered recommendations and monetization tools.",
-      image: "/images/crime.png",
-      url: "https://npfcrimesystem.netlify.app/",
+        "Premium Delivery Service. World-class delivery solutions with speed and professionalism you can trust.",
+      image: "/images/shipment.PNG",
+      url: "https://primecargo.vercel.app/",
       tags: ["React.js", "Node.js", "MongoDB"],
       accentColor: "from-purple-600 to-indigo-700",
     },
     {
-      title: "Mental Health ChatBot",
+      title: "LegalGenius",
       description:
-        "AI-powered mental health companion providing 24/7 student support with personalized coping strategies and crisis resources.",
-      image: "/images/studentmentalhealth.png",
-      url: "https://studentmentalhealth.netlify.app",
+        "Generate court-ready contracts, agreements, and legal forms with AI precision. Save thousands in lawyer fees while maintaining professional standards.",
+      image: "/images/legaldoc.PNG",
+      url: "https://legalgeniusai.vercel.app/",
       tags: ["React", "Python", "NLP"],
       accentColor: "from-blue-600 to-cyan-700",
     },
     {
-      title: "Bookshop E-Commerce",
+      title: "Police Crime Intelligence System",
       description:
-        "Full-featured online bookstore with advanced search, personalized recommendations, and seamless checkout experience.",
-      image: "/images/ebookshop.png",
-      url: "https://mouau-ebookshop.netlify.app",
-      tags: ["React", "Stripe API", "Redux"],
+        "Law Enforcement Data Management. Access, analyze, and manage criminal records efficiently",
+      image: "/images/law.PNG",
+      url: "https://npfcrimesystem.vercel.app/",
+      tags: ["React", "Express.js", "Node.js"],
       accentColor: "from-amber-600 to-orange-700",
     },
   ];
