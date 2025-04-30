@@ -4,16 +4,7 @@ import CoreValues from "@/app/components/CoreValues";
 
 const Values = () => {
   return (
-    <section className="values bg-black mt-12">
-      {/* <div className="banner w-full h-80 relative">
-        <Image
-          src="/images/quortek-logo.png"
-          alt="quortek-banner"
-          layout="fill"
-          objectFit="cover"
-          className="object-cover w-full h-full"
-        />
-      </div> */}
+    <section className="relative mt-8 py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden text-black">
       <CoreValues />
     </section>
   );

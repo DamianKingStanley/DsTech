@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useTransform, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaCode,
   FaMobileAlt,
@@ -97,11 +97,6 @@ const benefits = [
 ];
 
 export default function TechCoaching() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
-
   // Animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -139,7 +134,7 @@ export default function TechCoaching() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="relative py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden text-gray-900">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -157,21 +152,21 @@ export default function TechCoaching() {
           >
             <motion.span
               variants={item}
-              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+              className="inline-block  px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
             >
               Practically Tech Coaching
             </motion.span>
 
             <motion.h1
               variants={item}
-              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+              className="text-4xl md:text-5xl font-bold  mb-6"
             >
               Unlock Your Potential with QUORTEK
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl  max-w-3xl mx-auto"
             >
               Hands-on tech coaching to help you master in-demand skills and
               advance your career.
@@ -181,7 +176,7 @@ export default function TechCoaching() {
       </section>
 
       {/* Coaching Programs Section */}
-      <section className="relative py-20">
+      <section className="relative py-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
@@ -196,10 +191,7 @@ export default function TechCoaching() {
             >
               Our Coaching Programs
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               Comprehensive training in a wide range of tech disciplines,
               tailored to your goals.
             </motion.p>
@@ -216,20 +208,6 @@ export default function TechCoaching() {
                 <motion.div
                   variants={cardHover}
                   className={`h-full bg-gradient-to-br ${program.color} rounded-2xl overflow-hidden shadow-xl p-8 flex flex-col`}
-                  style={{
-                    rotateX,
-                    rotateY,
-                    transformPerspective: 1000,
-                  }}
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    x.set(e.clientX - rect.left - rect.width / 2);
-                    y.set(e.clientY - rect.top - rect.height / 2);
-                  }}
-                  onMouseLeave={() => {
-                    x.set(0);
-                    y.set(0);
-                  }}
                 >
                   <div className="mb-6 flex justify-center">
                     <motion.div
@@ -271,10 +249,7 @@ export default function TechCoaching() {
             >
               Why Choose Practically Tech Coaching
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We empower you with the skills and confidence to succeed in tech.
             </motion.p>
           </motion.div>
@@ -295,7 +270,7 @@ export default function TechCoaching() {
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-300">{benefit.desc}</p>
+                  <p className="">{benefit.desc}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -313,7 +288,7 @@ export default function TechCoaching() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-12 shadow-2xl"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
+            <h3 className="text-2xl text-white md:text-3xl font-bold mb-6">
               Ready to start your tech journey?
             </h3>
             <p className="text-xl text-gray-300 mb-8">

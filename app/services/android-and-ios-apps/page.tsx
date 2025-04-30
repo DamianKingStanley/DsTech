@@ -20,38 +20,32 @@ const MobileDevelopmentShowcase = () => {
     {
       title: "Discovery & Strategy",
       desc: "We conduct in-depth research to understand your business goals, target audience, and competitive landscape to create a winning mobile strategy.",
-      icon: <FaMobileAlt className="text-4xl" />,
-      color: "from-blue-100 to-blue-200",
+      icon: <FaMobileAlt className="text-2xl" />,
     },
     {
       title: "UI/UX Design",
       desc: "Our designers craft intuitive interfaces with pixel-perfect attention to detail, ensuring seamless user journeys and delightful experiences.",
-      icon: <FaPaintBrush className="text-4xl" />,
-      color: "from-blue-50 to-blue-100",
+      icon: <FaPaintBrush className="text-2xl" />,
     },
     {
       title: "Cross-Platform Development",
       desc: "Using React Native, we build high-performance apps that work flawlessly on both iOS and Android from a single codebase.",
-      icon: <FaReact className="text-4xl" />,
-      color: "from-blue-100 to-blue-200",
+      icon: <FaReact className="text-2xl" />,
     },
     {
       title: "Quality Assurance",
       desc: "We rigorously test across hundreds of device configurations to ensure your app performs perfectly in all scenarios.",
-      icon: <FaBug className="text-4xl" />,
-      color: "from-blue-50 to-blue-100",
+      icon: <FaBug className="text-2xl" />,
     },
     {
       title: "App Store Deployment",
       desc: "We handle the complete submission process to Google Play and Apple App Store, optimizing for discoverability and conversions.",
-      icon: <FaRocket className="text-4xl" />,
-      color: "from-blue-100 to-blue-200",
+      icon: <FaRocket className="text-2xl" />,
     },
     {
       title: "Ongoing Optimization",
       desc: "We provide continuous updates, performance monitoring, and feature enhancements to keep your app ahead of the competition.",
-      icon: <FaHeadset className="text-4xl" />,
-      color: "from-blue-50 to-blue-100",
+      icon: <FaHeadset className="text-2xl" />,
     },
   ];
 
@@ -59,7 +53,7 @@ const MobileDevelopmentShowcase = () => {
     {
       title: "Native Performance",
       desc: "React Native delivers truly native experiences with 90%+ code reuse across platforms.",
-      icon: <FaMobileAlt className="text-3xl" />,
+      icon: <FaMobileAlt className="text-2xl" />,
       color: "bg-blue-100 border-blue-200",
     },
     {
@@ -67,8 +61,8 @@ const MobileDevelopmentShowcase = () => {
       desc: "Deep platform knowledge ensures we leverage each OS's unique capabilities.",
       icon: (
         <div className="flex gap-2">
-          <FaApple className="text-3xl" />
-          <FaAndroid className="text-3xl" />
+          <FaApple className="text-2xl" />
+          <FaAndroid className="text-2xl" />
         </div>
       ),
       color: "bg-blue-50 border-blue-100",
@@ -76,7 +70,7 @@ const MobileDevelopmentShowcase = () => {
     {
       title: "Future-Proof Architecture",
       desc: "Modular codebases designed for easy scaling and feature additions.",
-      icon: <FaCode className="text-3xl" />,
+      icon: <FaCode className="text-2xl" />,
       color: "bg-blue-100 border-blue-200",
     },
   ];
@@ -183,13 +177,13 @@ const MobileDevelopmentShowcase = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
-              <motion.div key={index} variants={item} whileHover="hover">
+              <motion.div key={index} variants={item}>
                 <motion.div
                   variants={cardHover}
-                  className={`h-full bg-gradient-to-br ${step.color} rounded-2xl overflow-hidden shadow-lg border border-blue-200 p-8 flex flex-col`}
+                  className={`h-full  overflow-hidden  p-8 flex flex-col`}
                 >
                   <div className="mb-6 flex justify-center">
-                    <div className="p-4 bg-white rounded-xl shadow-sm">
+                    <div className="p-4 bg-blue-600 rounded-xl shadow-sm">
                       {step.icon}
                     </div>
                   </div>
@@ -233,7 +227,7 @@ const MobileDevelopmentShowcase = () => {
                   variants={cardHover}
                   className={`h-full ${benefit.color} rounded-2xl overflow-hidden shadow-lg border p-8 flex flex-col items-center text-center`}
                 >
-                  <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm">
+                  <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center mb-6 shadow-sm">
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4 text-gray-800">

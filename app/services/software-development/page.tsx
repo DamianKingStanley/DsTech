@@ -34,7 +34,6 @@ const softwareServices = [
   },
 ];
 
-// Benefits of choosing QUORTEK for software development
 const benefits = [
   {
     title: "Tailored Solutions",
@@ -56,7 +55,6 @@ const benefits = [
   },
 ];
 
-// Development approach principles
 const approachPrinciples = [
   {
     title: "Agile Development",
@@ -121,7 +119,7 @@ export default function SoftwareDevelopment() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="relative py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -139,21 +137,21 @@ export default function SoftwareDevelopment() {
           >
             <motion.span
               variants={item}
-              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+              className="inline-block  px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
             >
               Software Excellence
             </motion.span>
 
             <motion.h1
               variants={item}
-              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
             >
               Software Development by QUORTEK
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto"
             >
               We create innovative, scalable, and secure software to transform
               your business.
@@ -174,13 +172,13 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl font-bold mb-6"
+              className="text-3xl md:text-4xl text-gray-900 font-bold mb-6"
             >
               Building Scalable Solutions
             </motion.h2>
             <motion.p
               variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
+              className="text-xl text-gray-900 max-w-3xl mx-auto"
             >
               We craft custom software with precision, scalability, and security
               at its core.
@@ -203,17 +201,8 @@ export default function SoftwareDevelopment() {
                     rotateY,
                     transformPerspective: 1000,
                   }}
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    x.set(e.clientX - rect.left - rect.width / 2);
-                    y.set(e.clientY - rect.top - rect.height / 2);
-                  }}
-                  onMouseLeave={() => {
-                    x.set(0);
-                    y.set(0);
-                  }}
                 >
-                  <div className="mb-6 flex justify-center">
+                  <div className="mb-6 flex justify-center text-white">
                     <motion.div
                       className="p-4 bg-white/10 rounded-xl backdrop-blur-sm"
                       whileHover={{
@@ -226,10 +215,8 @@ export default function SoftwareDevelopment() {
                       {service.icon}
                     </motion.div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">
-                    {service.name}
-                  </h3>
-                  <p className="text-white/90">{service.desc}</p>
+                  <h3 className="text-2xl font-bold mb-4">{service.name}</h3>
+                  <p>{service.desc}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -249,13 +236,13 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl font-bold mb-6"
+              className="text-3xl md:text-4xl text-gray-900 font-bold mb-6"
             >
               Why Choose QUORTEK for Software Development
             </motion.h2>
             <motion.p
               variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
+              className="text-xl text-gray-900 max-w-3xl mx-auto"
             >
               We combine technical expertise with innovation to deliver software
               that drives results.
@@ -274,11 +261,13 @@ export default function SoftwareDevelopment() {
                   variants={cardHover}
                   className={`h-full ${benefit.color} rounded-2xl overflow-hidden shadow-xl p-8 border backdrop-blur-sm flex flex-col items-center text-center`}
                 >
-                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center mb-6">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-300">{benefit.desc}</p>
+                  <h3 className="text-xl text-gray-900 font-bold mb-4">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-900">{benefit.desc}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -298,13 +287,13 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl font-bold mb-6"
+              className="text-3xl text-gray-900 md:text-4xl font-bold mb-6"
             >
               Our Approach to Software Development
             </motion.h2>
             <motion.p
               variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
+              className="text-xl text-gray-900 max-w-3xl mx-auto"
             >
               We follow a clear and strategic process to ensure quality and
               success.

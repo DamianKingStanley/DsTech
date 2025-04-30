@@ -86,7 +86,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-black to-gray-900 text-white py-20 mt-12">
+    <section className="relative mt-8 pb-10 py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden text-black">
       <div className="container mx-auto px-6">
         {/* Hero Section */}
         <motion.div
@@ -98,21 +98,21 @@ const Contact = () => {
         >
           <motion.span
             variants={item}
-            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10  border border-white/20 uppercase"
           >
             Let’s Connect
           </motion.span>
 
           <motion.h1
             variants={item}
-            className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+            className="text-4xl md:text-6xl font-bold bg-clip-text  bg-gradient-to-r from-white to-gray-300 mb-6"
           >
             Contact QUORTEK
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl  max-w-3xl mx-auto"
           >
             Have a question or want to work with us? Reach out, and we’ll get
             back to you soon.
@@ -123,7 +123,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <motion.div
-            className="bg-gray-800 rounded-2xl p-8 shadow-xl"
+            className="bg-blue-800 text-white rounded-2xl p-8 shadow-xl"
             initial="hidden"
             whileInView="visible"
             variants={container}
@@ -135,7 +135,7 @@ const Contact = () => {
             >
               Get in Touch
             </motion.h2>
-            <motion.p variants={item} className="text-lg text-gray-400 mb-8">
+            <motion.p variants={item} className="text-lg  mb-8">
               We’re here to help you with your tech needs. Contact us via email,
               phone, or social media.
             </motion.p>
@@ -144,14 +144,14 @@ const Contact = () => {
                 variants={item}
                 className="flex items-center space-x-3 text-lg"
               >
-                <FaEnvelope className="text-gray-400" />
+                <FaEnvelope />
                 <span>contact@quortek.com</span>
               </motion.div>
               <motion.div
                 variants={item}
                 className="flex items-center space-x-3 text-lg"
               >
-                <FaPhone className="text-gray-400" />
+                <FaPhone />
                 <span>+234 915 982 2561</span>
               </motion.div>
               <motion.div
@@ -196,7 +196,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            className="bg-gray-800 rounded-2xl p-8 shadow-xl"
+            className="bg-blue-800 text-white rounded-2xl p-8 shadow-xl"
             initial="hidden"
             whileInView="visible"
             variants={container}
@@ -210,16 +210,14 @@ const Contact = () => {
             </motion.h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <motion.div variants={item}>
-                <label className="block text-gray-400 font-medium mb-2">
-                  Name
-                </label>
+                <label className="block  font-medium mb-2">Name</label>
                 <motion.input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                  className="w-full p-4 bg-white  border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
                   placeholder="Enter your name"
                   whileFocus="focus"
                   initial="blur"
@@ -227,16 +225,14 @@ const Contact = () => {
                 />
               </motion.div>
               <motion.div variants={item}>
-                <label className="block text-gray-400 font-medium mb-2">
-                  Email
-                </label>
+                <label className="block font-medium mb-2">Email</label>
                 <motion.input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                  className="w-full p-4 bg-white border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none"
                   placeholder="Enter your email"
                   whileFocus="focus"
                   initial="blur"
@@ -244,7 +240,7 @@ const Contact = () => {
                 />
               </motion.div>
               <motion.div variants={item}>
-                <label className="block text-gray-400 font-medium mb-2">
+                <label className="block -gray-400 font-medium mb-2">
                   Message
                 </label>
                 <motion.textarea
@@ -253,7 +249,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full p-4 bg-gray-700 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"
+                  className="w-full p-4 bg-white border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"
                   placeholder="Write your message"
                   whileFocus="focus"
                   initial="blur"

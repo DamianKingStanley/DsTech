@@ -119,7 +119,7 @@ export default function WebsiteDevelopment() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="relative py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden text-gray-900">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -137,21 +137,21 @@ export default function WebsiteDevelopment() {
           >
             <motion.span
               variants={item}
-              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+              className="inline-block  px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
             >
               Website Excellence
             </motion.span>
 
             <motion.h1
               variants={item}
-              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             >
               Website Development by QUORTEK
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+              className="text-xl text-gray-700 max-w-3xl mx-auto"
             >
               We build user-friendly, responsive, and visually stunning websites
               that drive your business forward.
@@ -161,7 +161,7 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* Development Process Section */}
-      <section className="relative py-20">
+      <section className="relative py-20 ">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
@@ -176,16 +176,13 @@ export default function WebsiteDevelopment() {
             >
               Our Development Process
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl max-w-3xl mx-auto">
               A meticulous approach to crafting high-quality websites at every
               stage.
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-white">
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
@@ -224,10 +221,8 @@ export default function WebsiteDevelopment() {
                       {step.icon}
                     </motion.div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/90">{step.desc}</p>
+                  <h3 className="text-2xl font-bold mb-4 ">{step.title}</h3>
+                  <p className="/90">{step.desc}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -251,10 +246,7 @@ export default function WebsiteDevelopment() {
             >
               Why Choose QUORTEK for Website Development
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-400 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We combine technical expertise with strategic thinking to deliver
               websites that grow your business.
             </motion.p>
@@ -276,7 +268,7 @@ export default function WebsiteDevelopment() {
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-300">{benefit.desc}</p>
+                  <p>{benefit.desc}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -286,7 +278,7 @@ export default function WebsiteDevelopment() {
 
       {/* CTA Section */}
       <section className="relative py-20">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -297,11 +289,11 @@ export default function WebsiteDevelopment() {
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
               Ready to build your website?
             </h3>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl  mb-8">
               Let’s discuss how we can create a stunning online presence for
               your business.
             </p>
-            <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all">
+            <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700  rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all">
               Reach Out Today
               <FaArrowRight className="ml-2" />
             </button>

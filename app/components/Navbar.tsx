@@ -9,6 +9,7 @@ import {
   LazyMotion,
   domAnimation,
 } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -138,9 +139,15 @@ const Navbar = () => {
             >
               <Link
                 href="/"
-                className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent"
+                className="text-1xl flex items-center font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent"
               >
-                QUORTEK Hub
+                <Image
+                  src="/images/qulogo.png"
+                  alt="Logo"
+                  width={60}
+                  height={100}
+                />
+                Quortek Hub
               </Link>
             </motion.div>
 

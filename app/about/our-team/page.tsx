@@ -3,13 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion, useTransform, useMotionValue } from "framer-motion";
-import {
-  FaLinkedin,
-  FaTwitter,
-  FaGithub,
-  FaInstagram,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaGithub, FaInstagram } from "react-icons/fa";
 
 // Updated team members (removed duplicate "Olaiya Mary" and ensured unique social links)
 const teamMembers = [
@@ -19,8 +13,7 @@ const teamMembers = [
     image:
       "https://ik.imagekit.io/webmanagement/mytech/king.PNG?updatedAt=1743758060696", // Placeholder image path
     socialLinks: {
-      linkedin:
-        "https://www.linkedin.com/in/damian-theking/",
+      linkedin: "https://www.linkedin.com/in/damian-theking/",
       twitter: "https://x.com/_king_Damian?s=09",
       github: "https://github.com/DamianKingStanley",
       instagram: "https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1",
@@ -83,11 +76,11 @@ const OurTeam = () => {
   const rotateY = useTransform(x, [-100, 100], [-10, 10]);
 
   return (
-    <section className="bg-gradient-to-b from-black to-gray-900 text-white py-20 mt-12">
+    <section className="relative mt-8 pb-10 py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden text-black">
       <div className="container mx-auto px-6">
         {/* Hero Section */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-20 mt-10"
           initial="hidden"
           whileInView="visible"
           variants={container}
@@ -95,21 +88,21 @@ const OurTeam = () => {
         >
           <motion.span
             variants={item}
-            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10  border border-white/20 uppercase"
           >
             Meet the Team
           </motion.span>
 
           <motion.h1
             variants={item}
-            className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+            className="text-4xl md:text-6xl font-bold bg-clip-text  bg-gradient-to-r from-white to-gray-300 mb-6"
           >
             The QUORTEK Team
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl  max-w-3xl mx-auto"
           >
             Our talented team drives innovation, builds solutions, and empowers
             our clients to succeed.
@@ -127,7 +120,7 @@ const OurTeam = () => {
             >
               <motion.div
                 variants={cardHover}
-                className="h-full bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col items-center text-center"
+                className="h-full bg-blue-900 text-white rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col items-center text-center"
                 style={{
                   rotateX,
                   rotateY,
@@ -160,7 +153,7 @@ const OurTeam = () => {
                 <h2 className="text-xl font-semibold text-white mb-2">
                   {member.name}
                 </h2>
-                <p className="text-gray-400 mb-4">{member.position}</p>
+                <p className=" mb-4">{member.position}</p>
                 <div className="flex space-x-4">
                   {member.socialLinks.linkedin && (
                     <a
@@ -207,31 +200,6 @@ const OurTeam = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <section className="relative py-20">
-          <div className="container mx-auto px-1 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              viewport={{ once: true }}
-              className="max-w-3xl mx-auto bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-12 shadow-2xl"
-            >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                Want to join the QUORTEK team?
-              </h3>
-              <p className="text-xl text-gray-300 mb-8">
-                We’re always looking for talented individuals to help us
-                innovate and grow.
-              </p>
-              <button className="inline-flex items-center justify-center px-4 py-4 bg-gradient-to-r from-white to-gray-200 text-black rounded-full text-lg font-medium hover:shadow-lg hover:shadow-gray-500/30 transition-all">
-                Explore Careers
-                <FaArrowRight className="ml-2" />
-              </button>
-            </motion.div>
-          </div>
-        </section>
       </div>
     </section>
   );
