@@ -1,15 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { FaQuoteLeft } from "react-icons/fa";
-// import Image from "next/image";
+import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -17,59 +12,48 @@ const testimonials = [
     feedback:
       "QUORTEK's mobile app transformed our customer engagement. Their team delivered beyond our expectations with innovative solutions that drove 3x more conversions.",
     position: "CEO, TechSolutions Inc.",
-    avatar: "/avatars/1.jpg", // Placeholder path
+    avatar: "/placeholder.svg?height=100&width=100", // Placeholder path
+    rating: 5,
   },
   {
     name: "Jane Smith",
     feedback:
       "The website QUORTEK built for us loads 60% faster than our previous one and has significantly improved our SEO rankings. Their attention to detail is remarkable.",
     position: "Marketing Director, BrandX",
-    avatar: "/avatars/2.jpg",
+    avatar: "/placeholder.svg?height=100&width=100",
+    rating: 5,
   },
   {
     name: "Michael Johnson",
     feedback:
       "Their AI implementation automated 80% of our manual processes. The QUORTEK team understood our needs perfectly and delivered ahead of schedule.",
     position: "CTO, DataCorp",
-    avatar: "/avatars/3.jpg",
+    avatar: "/placeholder.svg?height=100&width=100",
+    rating: 5,
   },
   {
     name: "Emily Williams",
     feedback:
       "After their tech coaching, our team's productivity increased by 40%. The practical, hands-on approach made complex concepts easy to implement immediately.",
     position: "Founder, StartupHub",
-    avatar: "/avatars/4.jpg",
+    avatar: "/placeholder.svg?height=100&width=100",
+    rating: 5,
   },
   {
     name: "David Brown",
     feedback:
       "Our e-commerce platform scaled seamlessly during peak seasons thanks to QUORTEK's robust architecture. Their support team is incredibly responsive.",
     position: "E-commerce Director, ShopEase",
-    avatar: "/avatars/5.jpg",
+    avatar: "/placeholder.svg?height=100&width=100",
+    rating: 5,
   },
 ];
 
 const TestimonialsShowcase = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+
   const carouselRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-
-  // 3D tilt effect
-  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
-  const rotateX = useTransform(x, [-100, 100], [15, -15]);
-
-  // Auto-rotation effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isHovered) {
-        setDirection(1);
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-      }
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isHovered]);
 
   const nextTestimonial = () => {
     setDirection(1);
@@ -134,18 +118,21 @@ const TestimonialsShowcase = () => {
     }),
   };
 
+  // Get current testimonial
+  const current = testimonials[currentIndex];
+
   return (
-    <section className="relative py-28 bg-gradient-to-b from-black to-gray-900 text-white overflow-hidden">
+    <section className="relative py-12 md:py-28 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gray-500 filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-gray-400 filter blur-3xl"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-100 filter blur-3xl opacity-70"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-purple-100 filter blur-3xl opacity-50"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
@@ -153,34 +140,29 @@ const TestimonialsShowcase = () => {
         >
           <motion.span
             variants={itemVariants}
-            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-white/10 text-white border border-white/20 uppercase"
+            className="inline-block px-4 py-1 md:px-6 md:py-2 mb-4 md:mb-6 text-xs md:text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
           >
             Client Voices
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-6"
+            className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800 mb-4 md:mb-6"
           >
             Trusted by Industry Leaders
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto px-4"
           >
-            Don’t just take our word for it—hear what our clients say about
+            Don&apos;t just take our word for it—hear what our clients say about
             working with QUORTEK.
           </motion.p>
         </motion.div>
 
         {/* Testimonials Carousel */}
-        <div
-          className="relative max-w-5xl mx-auto"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          ref={carouselRef}
-        >
+        <div className="relative max-w-5xl mx-auto" ref={carouselRef}>
           {/* Fixed height container for the carousel */}
-          <div className="relative min-h-[450px] overflow-hidden">
+          <div className="relative min-h-[500px] md:min-h-[450px] overflow-hidden">
             <AnimatePresence custom={direction} initial={false}>
               <motion.div
                 key={currentIndex}
@@ -189,51 +171,63 @@ const TestimonialsShowcase = () => {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl p-10"
-                style={{
-                  rotateY,
-                  rotateX,
-                  transformPerspective: 1000,
-                }}
-                onMouseMove={(e) => {
-                  const rect = carouselRef.current?.getBoundingClientRect();
-                  if (rect) {
-                    x.set(e.clientX - rect.left - rect.width / 2);
-                  }
-                }}
-                onMouseLeave={() => {
-                  x.set(0);
-                }}
+                className="absolute inset-0"
               >
-                <div className="flex flex-col md:flex-row gap-10 items-center h-full">
-                  {/* Client Avatar */}
-                  <motion.div
-                    className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/10 shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {/* <Image
-                      src={testimonials[currentIndex].avatar}
-                      alt={testimonials[currentIndex].name}
-                      layout="fill"
-                      objectFit="cover"
-                      className="filter grayscale"
-                    /> */}
-                  </motion.div>
+                <div className="relative h-full">
+                  {/* Background card */}
+                  <div className="absolute inset-0 bg-white shadow-xl border border-gray-100 transform rotate-1"></div>
 
-                  {/* Testimonial Content */}
-                  <div className="text-center md:text-left flex flex-col justify-center h-full">
-                    <FaQuoteLeft className="text-3xl text-white/20 mb-6 mx-auto md:mx-0" />
-                    <p className="text-sm text-gray-300 mb-8 leading-relaxed line-clamp-4">
-                      {testimonials[currentIndex].feedback}
-                    </p>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">
-                        {testimonials[currentIndex].name}
-                      </h3>
-                      <p className="text-gray-400">
-                        {testimonials[currentIndex].position}
-                      </p>
+                  {/* Main content card */}
+                  <div className="relative h-full bg-white shadow-xl border border-gray-100 p-6 md:p-10 z-10">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center h-full">
+                      {/* Left column - Client info */}
+                      <div className="flex flex-col items-center md:items-start space-y-4">
+                        {/* Client Avatar */}
+                        <motion.div
+                          className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <div className="absolute inset-0 bg-blue-200 rounded-full transform rotate-6"></div>
+                          <div className="absolute inset-0 bg-blue-100 rounded-full transform -rotate-3"></div>
+                          <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <Image
+                              src={current.avatar || "/placeholder.svg"}
+                              alt={current.name}
+                              layout="fill"
+                              objectFit="cover"
+                            />
+                          </div>
+                        </motion.div>
+
+                        {/* Client details */}
+                        <div className="text-center md:text-left mt-2 md:mt-4">
+                          <h3 className="text-lg md:text-xl font-bold text-gray-800">
+                            {current.name}
+                          </h3>
+                          <p className="text-sm md:text-base text-gray-600">
+                            {current.position}
+                          </p>
+
+                          {/* Rating */}
+                          <div className="flex justify-center md:justify-start mt-1 md:mt-2">
+                            {[...Array(current.rating)].map((_, i) => (
+                              <FaStar
+                                key={i}
+                                className="text-yellow-400 text-sm md:text-base"
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right column - Testimonial Content */}
+                      <div className="flex-1 flex flex-col justify-center">
+                        <FaQuoteLeft className="text-2xl md:text-3xl text-blue-200 mb-4 md:mb-6" />
+                        <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-6 md:mb-8 leading-relaxed italic px-2 sm:px-0">
+                          {current.feedback}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -242,18 +236,14 @@ const TestimonialsShowcase = () => {
           </div>
 
           {/* Navigation */}
-          <div
-            className={`flex justify-center mt-12 gap-4 transition-opacity ${
-              isHovered ? "opacity-100" : "md:opacity-30 hover:opacity-100"
-            }`}
-          >
+          <div className="flex justify-center mt-8 md:mt-12 gap-4">
             <motion.button
               onClick={prevTestimonial}
-              className="p-4 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+              className="p-3 md:p-4 rounded-full bg-white shadow-md border border-gray-200 text-gray-700 hover:bg-gray-50 transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronLeft className="text-xl" />
+              <FiChevronLeft className="text-lg md:text-xl" />
             </motion.button>
 
             <div className="flex items-center gap-2">
@@ -264,8 +254,10 @@ const TestimonialsShowcase = () => {
                     setDirection(index > currentIndex ? 1 : -1);
                     setCurrentIndex(index);
                   }}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentIndex ? "bg-white w-6" : "bg-white/30"
+                  className={`h-2 md:h-3 rounded-full transition-all ${
+                    index === currentIndex
+                      ? "bg-blue-500 w-6 md:w-8"
+                      : "bg-gray-300 w-2 md:w-3"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -274,11 +266,11 @@ const TestimonialsShowcase = () => {
 
             <motion.button
               onClick={nextTestimonial}
-              className="p-4 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all"
+              className="p-3 md:p-4 rounded-full bg-white shadow-md border border-gray-200 text-gray-700 hover:bg-gray-50 transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FiChevronRight className="text-xl" />
+              <FiChevronRight className="text-lg md:text-xl" />
             </motion.button>
           </div>
         </div>

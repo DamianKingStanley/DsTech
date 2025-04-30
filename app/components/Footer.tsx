@@ -18,10 +18,10 @@ const iconVariants = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white py-16">
-      <div className="container mx-auto px-6 lg:px-20">
+    <footer className="bg-blue-900/55 text-white py-16">
+      <div className="container mx-auto px-6 lg:px-6">
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Company Information */}
           <motion.div
             className="mb-8"
@@ -84,8 +84,20 @@ const Footer: React.FC = () => {
               </li>
               <li className="mb-3">
                 <strong>Email:</strong>{" "}
-                <a href="mailto:info@quortek.com" className="hover:text-white">
+                <a
+                  href="mailto:contact@quortek.com"
+                  className="hover:text-white"
+                >
                   info@quortek.com
+                </a>
+              </li>
+              <li className="mb-3">
+                <strong>Email:</strong>{" "}
+                <a
+                  href="mailto:contact@damianstanley76@gmail.com"
+                  className="hover:text-white"
+                >
+                  Damian Stanley
                 </a>
               </li>
               <li className="mb-3">
@@ -130,16 +142,16 @@ const Footer: React.FC = () => {
                   Contact Us
                 </Link>
               </li>
-              <li className="mb-3">
+              {/* <li className="mb-3">
                 <Link href="/about/privacy-policy" className="hover:text-white">
                   Privacy Policy
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </motion.div>
 
           {/* Newsletter Subscription */}
-          <motion.div
+          {/* <motion.div
             className="mb-8"
             initial="hidden"
             whileInView="visible"
@@ -160,7 +172,7 @@ const Footer: React.FC = () => {
                 Subscribe
               </button>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Footer Bottom */}

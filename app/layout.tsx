@@ -22,7 +22,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Quortek",
+  title: "Quortek Hub",
   description: "Building solutions and onboarding you into the tech space",
 };
 
