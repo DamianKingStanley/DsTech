@@ -1,7 +1,5 @@
 "use client";
-
-import React from "react";
-import { motion, useTransform, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaPalette,
   FaPaintBrush,
@@ -13,63 +11,50 @@ import {
 const designServices = [
   {
     name: "Branding Strategy",
-    icon: <FaRocket className="text-4xl text-white" />,
+    icon: <FaRocket className="text-4xl" />,
     desc: "We develop a unique brand voice and visual style that resonates with your audience, from logo creation to full brand guidelines.",
-    color: "from-purple-600 to-indigo-700",
   },
   {
     name: "Logo Design",
-    icon: <FaPalette className="text-4xl text-white" />,
-    desc: "Our team creates impactful logos that visually communicate your brand’s essence, leaving a lasting impression.",
-    color: "from-blue-600 to-cyan-700",
+    icon: <FaPalette className="text-4xl" />,
+    desc: "Our team creates impactful logos that visually communicate your brand's essence, leaving a lasting impression.",
   },
   {
     name: "Custom Graphics",
-    icon: <FaPaintBrush className="text-4xl text-white" />,
-    desc: "We craft tailored graphics, from banners to digital art, to elevate your brand’s identity and engage your audience.",
-    color: "from-amber-600 to-orange-700",
+    icon: <FaPaintBrush className="text-4xl" />,
+    desc: "We craft tailored graphics, from banners to digital art, to elevate your brand's identity and engage your audience.",
   },
   {
     name: "UI/UX Design",
-    icon: <FaVectorSquare className="text-4xl text-white" />,
+    icon: <FaVectorSquare className="text-4xl" />,
     desc: "We design user-centric interfaces for websites and apps, focusing on aesthetics, usability, and functionality.",
-    color: "from-emerald-600 to-teal-700",
   },
   {
     name: "Marketing Materials",
-    icon: <FaBullhorn className="text-4xl text-white" />,
-    desc: "From brochures to social media graphics, we create marketing materials that boost your brand’s visibility.",
-    color: "from-green-600 to-lime-700",
+    icon: <FaBullhorn className="text-4xl" />,
+    desc: "From brochures to social media graphics, we create marketing materials that boost your brand's visibility.",
   },
 ];
 
 const benefits = [
   {
     title: "Tailored Creativity",
-    desc: "We deliver custom designs that align perfectly with your brand’s vision and goals.",
-    icon: <FaPaintBrush className="text-3xl text-blue-600" />,
-    color: "bg-blue-600/10 border-blue-600/20",
+    desc: "We deliver custom designs that align perfectly with your brand's vision and goals.",
+    icon: <FaPaintBrush className="text-3xl" />,
   },
   {
     title: "User-Centric Focus",
     desc: "Our designs prioritize usability and engagement, ensuring a seamless experience.",
-    icon: <FaVectorSquare className="text-3xl text-purple-600" />,
-    color: "bg-purple-600/10 border-purple-600/20",
+    icon: <FaVectorSquare className="text-3xl" />,
   },
   {
     title: "Brand Consistency",
     desc: "We ensure all design elements reflect your brand identity cohesively.",
-    icon: <FaPalette className="text-3xl text-amber-600" />,
-    color: "bg-amber-600/10 border-amber-600/20",
+    icon: <FaPalette className="text-3xl" />,
   },
 ];
 
 export default function GraphicsAndBranding() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
-
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -94,26 +79,10 @@ export default function GraphicsAndBranding() {
     },
   };
 
-  const cardHover = {
-    hover: {
-      y: -15,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-  };
-
   return (
-    <div className="relative py-18 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
+    <div className="relative py-18 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gray-500 filter blur-3xl"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-gray-600 filter blur-3xl"></div>
-        </div>
-
+      <section className="relative py-16 md:py-32 overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center"
@@ -124,7 +93,7 @@ export default function GraphicsAndBranding() {
           >
             <motion.span
               variants={item}
-              className="inline-block  px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
+              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider uppercase"
             >
               Design Excellence
             </motion.span>
@@ -148,10 +117,10 @@ export default function GraphicsAndBranding() {
       </section>
 
       {/* Design Services Section */}
-      <section className="relative py-10">
+      <section className="relative py-16 md:py-20">
         <div className="container mx-auto px-6">
           <motion.div
-            className="text-center mb-20"
+            className="text-center mb-16 md:mb-20"
             initial="hidden"
             whileInView="visible"
             variants={container}
@@ -172,50 +141,54 @@ export default function GraphicsAndBranding() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {designServices.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                whileHover="hover"
-                className="h-full perspective-1000"
-              >
-                <motion.div
-                  variants={cardHover}
-                  className={`h-full bg-gradient-to-br ${service.color} rounded-2xl text-white p-8 flex flex-col`}
-                  style={{
-                    rotateX,
-                    rotateY,
-                    transformPerspective: 1000,
-                  }}
-                >
-                  <div className="mb-6 flex justify-center">
-                    <motion.div
-                      className="p-4 bg-white/20 rounded-xl backdrop-blur-sm"
-                      whileHover={{
-                        rotate: 15,
-                        scale: 1.1,
-                        backgroundColor: "rgba(255,255,255,0.3)",
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
+          <div className="relative max-w-6xl mx-auto">
+            {/* Thread-like connection for design services */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8">
+              {designServices.map((service, index) => {
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className={`relative flex flex-col items-center text-center ${
+                      index % 2 === 0
+                        ? "md:items-end md:text-right"
+                        : "md:items-start md:text-left"
+                    } lg:items-center lg:text-center`}
+                  >
+                    {/* Horizontal connector to central thread */}
+                    <div
+                      className={`absolute top-10 h-px border-t border-dashed border-gray-300 z-0 ${
+                        index % 2 === 0
+                          ? "md:w-1/2 md:left-1/2 lg:left-auto lg:right-1/2"
+                          : "md:w-1/2 md:right-1/2 lg:right-auto lg:left-1/2"
+                      } lg:w-1/3`}
+                    ></div>
+
+                    <div className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
                       {service.icon}
-                    </motion.div>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">{service.name}</h3>
-                  <p className="text-white/90">{service.desc}</p>
-                </motion.div>
-              </motion.div>
-            ))}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold mb-4">
+                      {service.name}
+                    </h3>
+                    <p className="text-gray-600">{service.desc}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="relative py-20 bg-gray-900 text-white">
+      <section className="relative py-16 md:py-20">
         <div className="container mx-auto px-6">
           <motion.div
-            className="text-center mb-20"
+            className="text-center mb-16 md:mb-20"
             initial="hidden"
             whileInView="visible"
             variants={container}
@@ -229,57 +202,64 @@ export default function GraphicsAndBranding() {
             </motion.h2>
             <motion.p
               variants={item}
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
+              className="text-xl text-gray-700 max-w-3xl mx-auto"
             >
               We combine creativity with strategic thinking to elevate your
               brand.
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                whileHover="hover"
-                className="h-full"
-              >
+          <div className="relative max-w-6xl mx-auto">
+            {/* Thread-like connection for benefits */}
+            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px border-t border-dashed border-gray-300 z-0"></div>
+            <div className="md:hidden absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10">
+              {benefits.map((benefit, index) => (
                 <motion.div
-                  variants={cardHover}
-                  className={`h-full ${benefit.color} rounded-2xl overflow-hidden shadow-xl p-8 border backdrop-blur-sm flex flex-col items-center text-center`}
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative flex flex-col items-center text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                  {/* Vertical connector for desktop */}
+                  <div className="hidden md:block absolute top-1/2 left-1/2 h-8 w-px border-l border-dashed border-gray-300 -translate-x-1/2 -translate-y-full z-0"></div>
+
+                  {/* Horizontal connector for mobile */}
+                  <div className="md:hidden absolute top-0 left-1/2 w-8 h-px border-t border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
+
+                  <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-white">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-white/80">{benefit.desc}</p>
+                  <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
+                  <p className="text-gray-600">{benefit.desc}</p>
                 </motion.div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+      <section className="relative py-16 md:py-20">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto bg-gray-900 rounded-3xl p-12 shadow-2xl"
+            className="max-w-3xl mx-auto p-12 border border-gray-200 rounded-lg"
           >
             <h3 className="text-2xl md:text-3xl font-bold mb-6">
               Ready to elevate your brand?
             </h3>
-            <p className="text-xl text-white/80 mb-8">
+            <p className="text-xl text-gray-700 mb-8">
               Let&apos;s discuss how we can bring your vision to life with
               stunning designs.
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition">
+            <button className="border border-gray-300 font-semibold px-6 py-3 rounded-full transition hover:bg-gray-50">
               Get Started
             </button>
           </motion.div>

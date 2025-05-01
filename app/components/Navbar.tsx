@@ -139,7 +139,7 @@ const Navbar = () => {
             >
               <Link
                 href="/"
-                className="text-1xl flex items-center font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent"
+                className="text-1xl flex items-center font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent"
               >
                 <Image
                   src="/images/qulogo.png"
