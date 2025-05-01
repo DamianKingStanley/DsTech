@@ -35,7 +35,7 @@ const Navbar = () => {
       name: "About",
       dropdown: ["About Us", "Our Team", "Values", "Privacy Policy"],
     },
-    { name: "Founder", href: "https://kingdamian.netlify.app/" },
+    { name: "Founder", href: "https://kingdamian.vercel.app/" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -230,7 +230,7 @@ const Navbar = () => {
                   href="/contact"
                   className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
                 >
-                  Request a Quote
+                  Start a Project
                 </Link>
               </motion.div>
             </div>
@@ -326,7 +326,7 @@ const Navbar = () => {
                   className="block w-full mt-4 px-4 py-3 text-center bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium shadow-md"
                   onClick={() => setIsOpen(false)}
                 >
-                  Request a Quote
+                  Start a Project
                 </Link>
               </div>
             </motion.div>

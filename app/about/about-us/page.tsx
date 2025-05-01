@@ -30,34 +30,34 @@ const item = {
 // Milestones
 const milestones = [
   {
-    year: "2015",
+    year: "2024",
     title: "QUORTEK Founded",
     description:
       "Started as a small web development agency with just 3 team members.",
   },
   {
-    year: "2017",
+    year: "2024",
     title: "Expanded Services",
     description: "Added graphic design and branding to our core offerings.",
   },
   {
-    year: "2019",
+    year: "2025",
     title: "Launched Tech Coaching",
     description:
       "Introduced our Practically Tech Coaching program to help individuals build tech skills.",
   },
-  {
-    year: "2021",
-    title: "Global Expansion",
-    description:
-      "Opened our first international office and reached clients in 15+ countries.",
-  },
-  {
-    year: "2023",
-    title: "Innovation Lab",
-    description:
-      "Established our Innovation Lab to research and develop emerging technologies.",
-  },
+  // {
+  //   year: "2021",
+  //   title: "Global Expansion",
+  //   description:
+  //     "Opened our first international office and reached clients in 15+ countries.",
+  // },
+  // {
+  //   year: "2023",
+  //   title: "Innovation Lab",
+  //   description:
+  //     "Established our Innovation Lab to research and develop emerging technologies.",
+  // },
 ];
 
 const About = () => {
@@ -243,7 +243,7 @@ const About = () => {
                 className="relative mb-16 last:mb-0 pl-8 md:pl-0 md:flex"
               >
                 {/* Year marker */}
-                <div className="absolute left-0 md:relative md:left-auto md:w-1/4 flex items-center">
+                <div className="absolute left-0 md:relative hidden md:block md:left-15 md:w-1/4  items-center">
                   <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center z-10">
                     <div className="w-3 h-3 rounded-full bg-gray-400"></div>
                   </div>

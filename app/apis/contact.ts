@@ -1,14 +1,31 @@
 import nodemailer from "nodemailer";
-export default async function handler(req, res) {
+import { NextApiRequest, NextApiResponse } from "next";
+
+interface ContactRequestBody {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  message: string;
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ApiResponse>
+) {
   if (req.method !== "POST") {
     return res
       .status(405)
       .json({ success: false, message: "Method Not Allowed" });
   }
 
-  const { name, email, message } = req.body;
+  const { name, email, subject, message } = req.body as ContactRequestBody;
 
-  if (!name || !email || !message) {
+  if (!name || !email || !subject || !message) {
     return res
       .status(400)
       .json({ success: false, message: "All fields are required" });
@@ -18,14 +35,14 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER, // Your Gmail
-        pass: process.env.EMAIL_PASS, // Your Gmail App Password
+        user: process.env.EMAIL_USER as string, // Your Gmail
+        pass: process.env.EMAIL_PASS as string, // Your Gmail App Password
       },
     });
 
     await transporter.sendMail({
       from: email,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER as string,
       subject: `New Contact Message from ${name}`,
       text: message,
     });

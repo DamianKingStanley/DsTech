@@ -77,7 +77,7 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-10  min-h-screen flex items-center justify-center bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden"
+      className="relative pt-14  min-h-screen flex items-center justify-center bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden"
     >
       {/* Subtle Particles Background */}
       <Particles className="absolute inset-0 z-0 opacity-30" />
