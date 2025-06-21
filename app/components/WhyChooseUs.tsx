@@ -9,8 +9,11 @@ import {
   FaLightbulb,
   FaUserShield,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 const WhyChooseUs = () => {
+  const { theme } = useTheme();
+
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -23,9 +26,9 @@ const WhyChooseUs = () => {
       title: "Cutting-Edge Innovation",
       description:
         "We leverage the latest technologies to build future-proof solutions that give you a competitive edge.",
-      color: "text-purple-600",
-      bgColor: "bg-purple-500",
-      lightBg: "bg-purple-50",
+      color: theme === "dark" ? "text-white" : "text-black",
+      bgColor: theme === "dark" ? "bg-purple-700" : "bg-blue-800",
+      lightBg: theme === "dark" ? "bg-purple-900/30" : "bg-purple-50",
       borderColor: "border-purple-200",
       y: useTransform(scrollYProgress, [0, 1], [0, -30]),
     },
@@ -34,9 +37,11 @@ const WhyChooseUs = () => {
       title: "Practical Tech Coaching",
       description:
         "Our hands-on training programs equip your team with real-world skills that drive immediate impact.",
-      color: "text-blue-600",
-      bgColor: "bg-blue-500",
-      lightBg: "bg-blue-50",
+      color: theme === "dark" ? "text-white" : "text-black",
+
+      bgColor: theme === "dark" ? "bg-purple-700" : "bg-blue-800",
+
+      lightBg: theme === "dark" ? "bg-purple-900/30" : "bg-purple-50",
       borderColor: "border-blue-200",
       y: useTransform(scrollYProgress, [0, 1], [0, -50]),
     },
@@ -45,9 +50,10 @@ const WhyChooseUs = () => {
       title: "Tailored Solutions",
       description:
         "We don't do cookie-cutter - every solution is custom-crafted to address your unique challenges.",
-      color: "text-amber-600",
-      bgColor: "bg-amber-500",
-      lightBg: "bg-amber-50",
+      color: theme === "dark" ? "text-white" : "text-black",
+      bgColor: theme === "dark" ? "bg-purple-700" : "bg-blue-800",
+
+      lightBg: theme === "dark" ? "bg-purple-900/30" : "bg-purple-50",
       borderColor: "border-amber-200",
       y: useTransform(scrollYProgress, [0, 1], [0, -20]),
     },
@@ -56,9 +62,11 @@ const WhyChooseUs = () => {
       title: "Trusted Partnership",
       description:
         "Your success is our priority. We build long-term relationships based on transparency and results.",
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-500",
-      lightBg: "bg-emerald-50",
+      color: theme === "dark" ? "text-white" : "text-black",
+
+      bgColor: theme === "dark" ? "bg-purple-700" : "bg-blue-800",
+
+      lightBg: theme === "dark" ? "bg-purple-900/30" : "bg-purple-50",
       borderColor: "border-emerald-200",
       y: useTransform(scrollYProgress, [0, 1], [0, -40]),
     },
@@ -92,7 +100,11 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={containerRef}
-      className="relative py-28 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden"
+      className={`relative py-32 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-10">
@@ -117,15 +129,12 @@ const WhyChooseUs = () => {
 
           <motion.h2
             variants={item}
-            className="text-2xl md:text-5xl font-bold text-gray-800 mb-6"
+            className="text-2xl md:text-4xl font-bold  mb-6"
           >
             Why Industry Leaders Choose Us
           </motion.h2>
 
-          <motion.p
-            variants={item}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-          >
+          <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
             We combine technical excellence with practical business
             understanding to deliver solutions that drive real results.
           </motion.p>
@@ -170,7 +179,7 @@ const WhyChooseUs = () => {
                   <h3 className={`text-2xl font-bold mb-3 ${benefit.color}`}>
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-700 text-lg">{benefit.description}</p>
+                  <p className=" text-lg">{benefit.description}</p>
 
                   {/* Decorative background */}
                   <div
@@ -184,13 +193,13 @@ const WhyChooseUs = () => {
 
         {/* Additional Reasons */}
         <motion.div
-          className="max-w-4xl mx-auto mb-16 bg-white rounded-3xl shadow-sm border border-gray-100 p-8"
+          className="max-w-4xl mx-auto mb-16  rounded-3xl shadow-sm border border-gray-100 p-8"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          <h3 className="text-2xl font-bold  mb-6 text-center">
             More Reasons to Partner With Us
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -201,8 +210,8 @@ const WhyChooseUs = () => {
               "Transparent pricing models",
             ].map((reason, index) => (
               <div key={index} className="flex items-start">
-                <FiCheckCircle className="text-green-500 text-xl mt-1 mr-3 flex-shrink-0" />
-                <p className="text-lg text-gray-700">{reason}</p>
+                <FiCheckCircle className="text-purple-500 text-xl mt-1 mr-3 flex-shrink-0" />
+                <p className="text-lg ">{reason}</p>
               </div>
             ))}
           </div>

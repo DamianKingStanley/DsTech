@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
+import { useTheme } from "next-themes";
 
 // Animation variants
 const container = {
@@ -61,10 +62,18 @@ const milestones = [
 ];
 
 const About = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white text-gray-900">
+    <div
+      className={`relative py-28 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
       {/* Hero Section */}
-      <section className="relative py-16 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-10 overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-12"
@@ -151,14 +160,14 @@ const About = () => {
               </div>
               <div className="md:w-1/2 md:pl-12">
                 <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-                <p className="text-lg text-gray-700 mb-6">
+                <p className="text-lg  mb-6">
                   At QUORTEK, we&apos;re on a mission to democratize technology
                   by creating innovative solutions that empower businesses and
                   individuals to thrive in the digital age. We believe that
                   technology should be accessible, intuitive, and
                   transformative.
                 </p>
-                <p className="text-lg text-gray-700">
+                <p className="text-lg ">
                   Through our software development, design services, and
                   educational programs, we aim to bridge the gap between complex
                   technology and practical application, ensuring our clients can
@@ -187,13 +196,13 @@ const About = () => {
               </div>
               <div className="md:w-1/2 md:pr-12">
                 <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
-                <p className="text-lg text-gray-700 mb-6">
+                <p className="text-lg  mb-6">
                   We envision a future where technology serves as a catalyst for
                   positive change, enabling businesses to innovate, individuals
                   to grow, and communities to thrive. QUORTEK aims to be at the
                   forefront of this transformation.
                 </p>
-                <p className="text-lg text-gray-700">
+                <p className="text-lg ">
                   By 2030, we aspire to impact over 10,000 businesses and
                   100,000 individuals through our services and educational
                   programs, establishing ourselves as a global leader in
@@ -221,10 +230,7 @@ const About = () => {
             >
               Our Journey
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-700 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               From humble beginnings to industry leadership.
             </motion.p>
           </motion.div>
@@ -255,35 +261,11 @@ const About = () => {
                 {/* Content */}
                 <div className="md:w-3/4 md:pl-12">
                   <h3 className="text-xl font-bold mb-2">{milestone.title}</h3>
-                  <p className="text-gray-600">{milestone.description}</p>
+                  <p>{milestone.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-16 md:py-24">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto p-12 border border-gray-200 rounded-lg"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Ready to work with us?
-            </h3>
-            <p className="text-xl text-gray-700 mb-8">
-              Let&apos;s discuss how QUORTEK can help transform your ideas into
-              reality.
-            </p>
-            <button className="border border-gray-300 font-semibold px-6 py-3 rounded-full transition hover:bg-gray-50">
-              Get in Touch
-            </button>
-          </motion.div>
         </div>
       </section>
     </div>

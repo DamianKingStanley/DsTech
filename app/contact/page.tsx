@@ -5,7 +5,6 @@ import { motion, useInView, useAnimation } from "framer-motion";
 import {
   FaEnvelope,
   FaPhone,
-  FaMapMarkerAlt,
   FaFacebook,
   FaTwitter,
   FaLinkedin,
@@ -13,6 +12,7 @@ import {
   FaPaperPlane,
   FaCheck,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 // Animation variants
 const container = {
@@ -55,6 +55,8 @@ const pathVariants = {
 };
 
 const Contact = () => {
+  const { theme } = useTheme();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -156,7 +158,13 @@ const Contact = () => {
   ];
 
   return (
-    <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white  text-gray-900">
+    <div
+      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 ${
+        theme === "dark"
+          ? "bg-gray-900 text-gray-100"
+          : "bg-white text-gray-900"
+      }`}
+    >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <svg
@@ -226,7 +234,7 @@ const Contact = () => {
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                   activeTab === "message"
                     ? "bg-gray-900 text-white shadow-sm"
-                    : "bg-transparent text-gray-600 hover:text-gray-900"
+                    : "bg-transparent "
                 }`}
               >
                 Send Message
@@ -236,7 +244,7 @@ const Contact = () => {
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                   activeTab === "faq"
                     ? "bg-gray-900 text-white shadow-sm"
-                    : "bg-transparent text-gray-600 hover:text-gray-900"
+                    : "bg-transparent "
                 }`}
               >
                 FAQs
@@ -264,7 +272,7 @@ const Contact = () => {
                   {/* Horizontal connector to central thread */}
                   <div className="absolute top-16 right-0 w-8 h-px border-t border-dashed border-gray-300 z-0 hidden md:block"></div>
 
-                  <div className="relative z-10 bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+                  <div className="relative z-10 border border-gray-200 rounded-lg p-8 shadow-sm">
                     <motion.h2
                       variants={item}
                       className="text-2xl md:text-3xl font-bold mb-8"
@@ -278,12 +286,12 @@ const Contact = () => {
                         className="flex items-start space-x-4"
                       >
                         <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                          <FaEnvelope className="text-gray-600" />
+                          <FaEnvelope className="" />
                         </div>
                         <div>
                           <h3 className="font-medium text-lg mb-1">Email Us</h3>
-                          <p className="text-gray-600">contact@quortek.com</p>
-                          <p className="text-gray-600">support@quortek.com</p>
+                          <p className="">damianstanley@gmail.com</p>
+                          <p className="">quortekhub@gmail.com</p>
                         </div>
                       </motion.div>
 
@@ -292,28 +300,12 @@ const Contact = () => {
                         className="flex items-start space-x-4"
                       >
                         <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                          <FaPhone className="text-gray-600" />
+                          <FaPhone className="" />
                         </div>
                         <div>
                           <h3 className="font-medium text-lg mb-1">Call Us</h3>
-                          <p className="text-gray-600">+234 915 982 2561</p>
-                          <p className="text-gray-600">Mon-Fri, 9am-5pm WAT</p>
-                        </div>
-                      </motion.div>
-
-                      <motion.div
-                        variants={item}
-                        className="flex items-start space-x-4"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                          <FaMapMarkerAlt className="text-gray-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-lg mb-1">Visit Us</h3>
-                          <p className="text-gray-600">
-                            Tech Hub, Innovation Street
-                          </p>
-                          <p className="text-gray-600">Lagos, Nigeria</p>
+                          <p className="">+234 915 982 2561</p>
+                          <p className="">Mon-Fri, 9am-5pm WAT</p>
                         </div>
                       </motion.div>
                     </div>
@@ -327,7 +319,7 @@ const Contact = () => {
                           href="https://facebook.com/king.stan.01"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-all"
+                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center border-gray-900 transition-all"
                         >
                           <FaFacebook />
                         </a>
@@ -335,15 +327,15 @@ const Contact = () => {
                           href="https://x.com/_king_Damian?s=09"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-all"
+                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center transition-all"
                         >
                           <FaTwitter />
                         </a>
                         <a
-                          href="https://www.linkedin.com/in/damian-theking/"
+                          href="https://www.linkedin.com/in/damian-stanley/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-all"
+                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center  transition-all"
                         >
                           <FaLinkedin />
                         </a>
@@ -351,7 +343,7 @@ const Contact = () => {
                           href="https://www.instagram.com/quortek?igsh=YWN3aDdwOGwxYjJ1"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-all"
+                          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center  transition-all"
                         >
                           <FaInstagram />
                         </a>
@@ -371,7 +363,7 @@ const Contact = () => {
                   {/* Horizontal connector to central thread */}
                   <div className="absolute top-16 left-0 w-8 h-px border-t border-dashed border-gray-300 z-0 hidden md:block"></div>
 
-                  <div className="relative z-10 bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+                  <div className="relative z-10  border border-gray-200 rounded-lg p-8 shadow-sm">
                     <motion.h2
                       variants={item}
                       className="text-2xl md:text-3xl font-bold mb-8"
@@ -392,7 +384,7 @@ const Contact = () => {
                         <h3 className="text-2xl font-bold mb-2">
                           Message Sent!
                         </h3>
-                        <p className="text-gray-600 mb-6">
+                        <p className=" mb-6">
                           Thank you for reaching out. We&apos;ll get back to you
                           as soon as possible.
                         </p>
@@ -407,7 +399,7 @@ const Contact = () => {
                       <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <motion.div variants={item}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium mb-2">
                               Name
                             </label>
                             <input
@@ -421,7 +413,7 @@ const Contact = () => {
                             />
                           </motion.div>
                           <motion.div variants={item}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium  mb-2">
                               Email
                             </label>
                             <input
@@ -436,7 +428,7 @@ const Contact = () => {
                           </motion.div>
                         </div>
                         <motion.div variants={item}>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium  mb-2">
                             Subject
                           </label>
                           <input
@@ -450,7 +442,7 @@ const Contact = () => {
                           />
                         </motion.div>
                         <motion.div variants={item}>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium mb-2">
                             Message
                           </label>
                           <textarea
@@ -532,14 +524,14 @@ const Contact = () => {
                     <div className="absolute top-8 left-1/2 w-8 h-px border-t border-dashed border-gray-300 z-0"></div>
 
                     <div
-                      className={`relative z-10 bg-white border border-gray-200 rounded-lg p-6 shadow-sm ml-auto ${
+                      className={`relative z-10  border border-gray-200 rounded-lg p-6 shadow-sm ml-auto ${
                         index % 2 === 0
                           ? "md:ml-auto md:mr-0 md:w-1/2"
                           : "md:mr-auto md:ml-0 md:w-1/2"
                       }`}
                     >
                       <h3 className="text-lg font-bold mb-3">{faq.question}</h3>
-                      <p className="text-gray-600">{faq.answer}</p>
+                      <p className="">{faq.answer}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -554,9 +546,7 @@ const Contact = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Quick Contact Options
             </h2>
-            <p className="text-gray-600">
-              Choose the most convenient way to reach us
-            </p>
+            <p>Choose the most convenient way to reach us</p>
           </div>
 
           <div className="relative">
@@ -595,11 +585,11 @@ const Contact = () => {
                   {/* Vertical connector */}
                   <div className="absolute top-0 left-1/2 h-16 w-px border-l border-dashed border-gray-300 -translate-x-1/2 -translate-y-full z-0"></div>
 
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-white border border-gray-200 flex items-center justify-center mb-4">
+                  <div className="relative z-10 w-16 h-16 rounded-full  border border-gray-200 flex items-center justify-center mb-4">
                     {option.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-2">{option.title}</h3>
-                  <p className="text-gray-600 mb-4">{option.description}</p>
+                  <p className="mb-4">{option.description}</p>
                   <button className="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-all">
                     {option.action}
                   </button>

@@ -9,8 +9,8 @@ import {
   FaHeadset,
   FaMobileAlt,
   FaSearch,
-  FaArrowRight,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 // Development process steps
 const processSteps = [
@@ -66,6 +66,8 @@ const benefits = [
 ];
 
 export default function WebsiteDevelopment() {
+  const { theme } = useTheme();
+
   // Animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -92,9 +94,15 @@ export default function WebsiteDevelopment() {
   };
 
   return (
-    <div className="relative py-18 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white  text-gray-900">
+    <div
+      className={`relative py-8 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
       {/* Hero Section */}
-      <section className="relative pt-32 pb-5 overflow-hidden">
+      <section className="relative pt-10 pb-5 overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center"
@@ -105,22 +113,12 @@ export default function WebsiteDevelopment() {
           >
             <motion.span
               variants={item}
-              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider uppercase"
+              className="inline-block px-6 py-2  text-sm font-medium tracking-wider uppercase"
             >
               Website Excellence
             </motion.span>
 
-            <motion.h1
-              variants={item}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-            >
-              Website Development by QUORTEK
-            </motion.h1>
-
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-700 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl max-w-3xl mx-auto">
               We build user-friendly, responsive, and visually stunning websites
               that drive your business forward.
             </motion.p>
@@ -174,11 +172,11 @@ export default function WebsiteDevelopment() {
                   }`}
                 >
                   <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.desc}</p>
+                  <p>{step.desc}</p>
                 </div>
 
                 <div className="relative z-10 flex-shrink-0">
-                  <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center border border-gray-200">
+                  <div className="w-20 h-20 rounded-full  flex items-center justify-center border border-gray-200">
                     {step.icon}
                   </div>
                 </div>
@@ -191,7 +189,7 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* Benefits Section */}
-      <section className="relative py-20">
+      <section className="relative pb-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
@@ -226,35 +224,10 @@ export default function WebsiteDevelopment() {
                   {benefit.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.desc}</p>
+                <p>{benefit.desc}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-20">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto p-12"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Ready to build your website?
-            </h3>
-            <p className="text-xl mb-8">
-              Let&apos;s discuss how we can create a stunning online presence
-              for your business.
-            </p>
-            <button className="inline-flex items-center justify-center px-8 py-4 border border-gray-300 rounded-full text-lg font-medium hover:bg-gray-50 transition-all">
-              Reach Out Today
-              <FaArrowRight className="ml-2" />
-            </button>
-          </motion.div>
         </div>
       </section>
     </div>

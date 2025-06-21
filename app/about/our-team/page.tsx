@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { motion } from "framer-motion";
 import {
   FaLinkedin,
@@ -9,6 +9,7 @@ import {
   FaInstagram,
   FaQuoteLeft,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 // Team members with expanded information
 const teamMembers = [
@@ -81,9 +82,16 @@ const item = {
 
 const OurTeam = () => {
   const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const { theme } = useTheme();
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white text-gray-900">
+    <section
+      className={`relative py-28 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
       <div className="container mx-auto px-6">
         {/* Hero Section */}
         <motion.div
@@ -158,7 +166,7 @@ const OurTeam = () => {
                       />
                     </div>
                     <div
-                      className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white border transition-all duration-300 ${
+                      className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full  border transition-all duration-300 ${
                         activeTeamMember === index
                           ? "border-gray-800"
                           : "border-gray-300"
@@ -203,8 +211,8 @@ const OurTeam = () => {
                       objectFit="cover"
                     />
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-white border border-gray-300"></div>
-                  <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-white border border-gray-300"></div>
+                  <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full border border-gray-300"></div>
+                  <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full  border border-gray-300"></div>
                 </div>
 
                 <div className="flex space-x-4 mb-8">
@@ -226,7 +234,7 @@ const OurTeam = () => {
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-all"
+                        className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center   hover:border-gray-900 transition-all"
                       >
                         <Icon size={18} />
                       </a>
@@ -234,9 +242,9 @@ const OurTeam = () => {
                   })}
                 </div>
 
-                <div className="relative p-6 border border-gray-200 rounded-lg bg-white mb-8 md:mb-0 max-w-xs">
-                  <FaQuoteLeft className="text-gray-200 text-3xl absolute -top-4 -left-4" />
-                  <p className="text-gray-600 italic">
+                <div className="relative p-6 border border-gray-200 rounded-lg mb-8 md:mb-0 max-w-xs">
+                  <FaQuoteLeft className=" text-3xl absolute -top-4 -left-4" />
+                  <p className=" italic">
                     &apos;{teamMembers[activeTeamMember].quote}&apos;
                   </p>
                 </div>
@@ -247,13 +255,11 @@ const OurTeam = () => {
                 <h2 className="text-3xl font-bold mb-2">
                   {teamMembers[activeTeamMember].name}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6">
+                <p className="text-xl  mb-6">
                   {teamMembers[activeTeamMember].position}
                 </p>
 
-                <p className="text-gray-700 mb-8">
-                  {teamMembers[activeTeamMember].bio}
-                </p>
+                <p className=" mb-8">{teamMembers[activeTeamMember].bio}</p>
 
                 <div>
                   <h3 className="text-lg font-semibold mb-3">
@@ -264,7 +270,7 @@ const OurTeam = () => {
                       (skill, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                          className="px-3 py-1  rounded-full text-sm"
                         >
                           {skill}
                         </span>
@@ -286,7 +292,7 @@ const OurTeam = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold mb-6">Our Team Values</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl ">
               The principles that guide our work and collaboration
             </p>
           </motion.div>
@@ -324,11 +330,11 @@ const OurTeam = () => {
                   {/* Vertical connector */}
                   <div className="absolute top-0 left-1/2 h-8 w-px border-l border-dashed border-gray-300 -translate-x-1/2 -translate-y-full z-0"></div>
 
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-white border border-gray-200 flex items-center justify-center mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gray-100"></div>
+                  <div className="relative z-10 w-16 h-16 rounded-full  border border-gray-200 flex items-center justify-center mb-4">
+                    <div className="w-8 h-8 rounded-full "></div>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
+                  <p className="">{value.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -336,7 +342,7 @@ const OurTeam = () => {
         </div>
 
         {/* Join Our Team CTA */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -344,14 +350,14 @@ const OurTeam = () => {
           className="max-w-3xl mx-auto mt-24 p-12 border border-gray-200 rounded-lg text-center"
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-6">Join Our Team</h3>
-          <p className="text-xl text-gray-700 mb-8">
+          <p className="text-xl  mb-8">
             We&apos;re always looking for talented individuals who share our
             passion for innovation and excellence.
           </p>
           <button className="border border-gray-300 font-semibold px-6 py-3 rounded-full transition hover:bg-gray-50">
             View Open Positions
           </button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

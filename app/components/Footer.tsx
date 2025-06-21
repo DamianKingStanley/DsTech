@@ -1,26 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
-// Animation variants for footer sections
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-// Animation for social icons
 const iconVariants = {
   hover: { scale: 1.2, transition: { duration: 0.3 } },
 };
 
-const Footer: React.FC = () => {
+const Footer = () => {
+  const { theme } = useTheme();
+
   return (
-    <footer className="bg-blue-900/55 text-white py-16">
+    <footer
+      className={`py-16 ${
+        theme === "dark" ? "bg-gray-900" : "bg-gray-800"
+      } text-white`}
+    >
       <div className="container mx-auto px-6 lg:px-6">
-        {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Company Information */}
           <motion.div
@@ -34,7 +37,11 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">
               Innovate. Build. Learn.
             </h3>
-            <p className="text-gray-400 text-sm mb-6">
+            <p
+              className={`text-sm mb-6 ${
+                theme === "dark" ? "text-gray-400" : "text-blue-200"
+              }`}
+            >
               QUORTEK is a tech company dedicated to building cutting-edge
               solutions and empowering the next generation through our
               Practically Tech Coaching program.
@@ -58,9 +65,13 @@ const Footer: React.FC = () => {
                 <motion.a
                   key={index}
                   href={social.url}
-                  className="text-gray-400"
+                  className={`${
+                    theme === "dark" ? "text-gray-400" : "text-blue-200"
+                  }`}
                   whileHover="hover"
                   variants={iconVariants}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <span className="text-2xl">{social.icon}</span>
                 </motion.a>
@@ -77,24 +88,25 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-xl font-semibold mb-4">Get In Touch</h3>
-            <ul className="text-gray-400 text-sm">
+            <ul
+              className={`text-sm ${
+                theme === "dark" ? "text-gray-400" : "text-blue-200"
+              }`}
+            >
               <li className="mb-3">
                 <strong>Location:</strong> 28 Choba Road, Port Harcourt, Rivers
                 State, Nigeria
               </li>
               <li className="mb-3">
                 <strong>Email:</strong>{" "}
-                <a
-                  href="mailto:contact@quortek.com"
-                  className="hover:text-white"
-                >
+                <a href="mailto:info@quortek.com" className="hover:text-white">
                   info@quortek.com
                 </a>
               </li>
               <li className="mb-3">
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:contact@damianstanley76@gmail.com"
+                  href="mailto:damianstanley76@gmail.com"
                   className="hover:text-white"
                 >
                   Damian Stanley
@@ -118,7 +130,11 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-            <ul className="text-gray-400 text-sm">
+            <ul
+              className={`text-sm ${
+                theme === "dark" ? "text-gray-400" : "text-blue-200"
+              }`}
+            >
               <li className="mb-3">
                 <Link href="/" className="hover:text-white">
                   Home
@@ -142,42 +158,17 @@ const Footer: React.FC = () => {
                   Contact Us
                 </Link>
               </li>
-              {/* <li className="mb-3">
-                <Link href="/about/privacy-policy" className="hover:text-white">
-                  Privacy Policy
-                </Link>
-              </li> */}
             </ul>
           </motion.div>
-
-          {/* Newsletter Subscription */}
-          {/* <motion.div
-            className="mb-8"
-            initial="hidden"
-            whileInView="visible"
-            variants={sectionVariants}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Subscribe to our newsletter for the latest updates and insights.
-            </p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full p-3 rounded-l-full bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-gray-500"
-              />
-              <button className="bg-white text-black px-6 py-3 rounded-r-full font-semibold hover:bg-gray-200 transition duration-300">
-                Subscribe
-              </button>
-            </div>
-          </motion.div> */}
         </div>
 
         {/* Footer Bottom */}
         <motion.div
-          className="border-t border-gray-800 pt-8 mt-12 text-center text-gray-400 text-sm"
+          className={`border-t pt-8 mt-12 text-center text-sm ${
+            theme === "dark"
+              ? "border-gray-800 text-gray-400"
+              : "border-blue-800 text-blue-200"
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}

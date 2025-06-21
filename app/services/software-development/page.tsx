@@ -7,8 +7,8 @@ import {
   FaCode,
   FaRocket,
   FaComments,
-  FaArrowRight,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 // Software development services
 const softwareServices = [
@@ -66,6 +66,8 @@ const approachPrinciples = [
 ];
 
 export default function SoftwareDevelopment() {
+  const { theme } = useTheme();
+
   // Animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -92,42 +94,13 @@ export default function SoftwareDevelopment() {
   };
 
   return (
-    <div className="relative py-18 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white text-gray-900">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-32 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            className="text-center"
-            initial="hidden"
-            whileInView="visible"
-            variants={container}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <motion.span
-              variants={item}
-              className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider uppercase"
-            >
-              Software Excellence
-            </motion.span>
-
-            <motion.h1
-              variants={item}
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
-            >
-              Software Development by QUORTEK
-            </motion.h1>
-
-            <motion.p
-              variants={item}
-              className="text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto"
-            >
-              We create innovative, scalable, and secure software to transform
-              your business.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
+    <div
+      className={`relative py-28 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
       {/* Software Services Section */}
       <section className="relative py-10 md:py-20">
         <div className="container mx-auto px-6">
@@ -140,14 +113,11 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl text-gray-900 font-bold mb-6"
+              className="text-3xl md:text-4xl  font-bold mb-6"
             >
               Building Scalable Solutions
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-900 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We craft custom software with precision, scalability, and security
               at its core.
             </motion.p>
@@ -177,13 +147,13 @@ export default function SoftwareDevelopment() {
                   {/* Horizontal connector for mobile */}
                   <div className="md:hidden absolute top-0 left-1/2 w-8 h-px border-t border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
 
-                  <div className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
+                  <div className="relative z-10 w-20 h-20 rounded-full  flex items-center justify-center border border-gray-200 mb-6">
                     {service.icon}
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold mb-4">
                     {service.name}
                   </h3>
-                  <p className="text-gray-600">{service.desc}</p>
+                  <p>{service.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -203,14 +173,11 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl text-gray-900 font-bold mb-6"
+              className="text-3xl md:text-4xl  font-bold mb-6"
             >
               Why Choose QUORTEK for Software Development
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-900 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl max-w-3xl mx-auto">
               We combine technical expertise with innovation to deliver software
               that drives results.
             </motion.p>
@@ -237,11 +204,11 @@ export default function SoftwareDevelopment() {
                   {/* Horizontal connector for mobile */}
                   <div className="md:hidden absolute top-0 left-1/2 w-8 h-px border-t border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
 
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
+                  <div className="relative z-10 w-16 h-16 rounded-full  flex items-center justify-center border border-gray-200 mb-6">
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.desc}</p>
+                  <p>{benefit.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -261,14 +228,11 @@ export default function SoftwareDevelopment() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl text-gray-900 md:text-4xl font-bold mb-6"
+              className="text-3xl md:text-4xl font-bold mb-6"
             >
               Our Approach to Software Development
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-900 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We follow a clear and strategic process to ensure quality and
               success.
             </motion.p>
@@ -295,42 +259,17 @@ export default function SoftwareDevelopment() {
                   {/* Horizontal connector for mobile */}
                   <div className="md:hidden absolute top-0 left-1/2 w-8 h-px border-t border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
 
-                  <div className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
+                  <div className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center border border-gray-200 mb-6">
                     {principle.icon}
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold mb-4">
                     {principle.title}
                   </h3>
-                  <p className="text-gray-600">{principle.desc}</p>
+                  <p>{principle.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-16 md:py-20">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto p-12"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Ready to build your software solution?
-            </h3>
-            <p className="text-xl mb-8">
-              Let&apos;s discuss how we can create a scalable and secure
-              application for your business.
-            </p>
-            <button className="inline-flex items-center justify-center px-8 py-4 border border-gray-300 rounded-full text-lg font-medium hover:bg-gray-50 transition-all">
-              Reach Out Today
-              <FaArrowRight className="ml-2" />
-            </button>
-          </motion.div>
         </div>
       </section>
     </div>

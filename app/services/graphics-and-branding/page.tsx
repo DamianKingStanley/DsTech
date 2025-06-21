@@ -7,6 +7,7 @@ import {
   FaVectorSquare,
   FaBullhorn,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 const designServices = [
   {
@@ -55,6 +56,8 @@ const benefits = [
 ];
 
 export default function GraphicsAndBranding() {
+  const { theme } = useTheme();
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -80,9 +83,15 @@ export default function GraphicsAndBranding() {
   };
 
   return (
-    <div className="relative py-18 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white text-gray-900">
+    <div
+      className={`relative py-28 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
       {/* Hero Section */}
-      <section className="relative py-16 md:py-32 overflow-hidden">
+      <section className="relative py-10 md:py-16 overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center"
@@ -100,15 +109,12 @@ export default function GraphicsAndBranding() {
 
             <motion.h1
               variants={item}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-5xl font-bold  mb-6"
             >
               Transform Your Brand with QUORTEK
             </motion.h1>
 
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-700 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We shape your brand identity with custom graphics, unique designs,
               and creative solutions that stand out.
             </motion.p>
@@ -128,14 +134,11 @@ export default function GraphicsAndBranding() {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-4xl font-bold mb-6"
             >
               Our Design Process
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-700 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               A meticulous approach to crafting impactful designs at every
               stage.
             </motion.p>
@@ -169,13 +172,13 @@ export default function GraphicsAndBranding() {
                       } lg:w-1/3`}
                     ></div>
 
-                    <div className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
+                    <div className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center border border-gray-200 mb-6">
                       {service.icon}
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold mb-4">
                       {service.name}
                     </h3>
-                    <p className="text-gray-600">{service.desc}</p>
+                    <p className="">{service.desc}</p>
                   </motion.div>
                 );
               })}
@@ -200,10 +203,7 @@ export default function GraphicsAndBranding() {
             >
               Why Choose QUORTEK for Design
             </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-700 max-w-3xl mx-auto"
-            >
+            <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
               We combine creativity with strategic thinking to elevate your
               brand.
             </motion.p>
@@ -230,39 +230,15 @@ export default function GraphicsAndBranding() {
                   {/* Horizontal connector for mobile */}
                   <div className="md:hidden absolute top-0 left-1/2 w-8 h-px border-t border-dashed border-gray-300 -translate-x-1/2 z-0"></div>
 
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center border border-gray-200 mb-6">
+                  <div className="relative z-10 w-16 h-16 rounded-full  flex items-center justify-center border border-gray-200 mb-6">
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.desc}</p>
+                  <p className="">{benefit.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-16 md:py-20">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto p-12 border border-gray-200 rounded-lg"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Ready to elevate your brand?
-            </h3>
-            <p className="text-xl text-gray-700 mb-8">
-              Let&apos;s discuss how we can bring your vision to life with
-              stunning designs.
-            </p>
-            <button className="border border-gray-300 font-semibold px-6 py-3 rounded-full transition hover:bg-gray-50">
-              Get Started
-            </button>
-          </motion.div>
         </div>
       </section>
     </div>

@@ -2,23 +2,37 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FiExternalLink, FiArrowRight } from "react-icons/fi";
-import Image from "next/image";
+import { FiExternalLink } from "react-icons/fi";
+import Image from "next/legacy/image";
+import { useTheme } from "next-themes";
 
 const JobProfile = () => {
+  const { theme } = useTheme();
+
   const [activeProject, setActiveProject] = useState(0);
 
   const projects = [
     {
-      title: "VastSea Carrier",
+      title: "Lovecommit",
       description:
-        "Premium Delivery Service. World-class delivery solutions with speed and professionalism you can trust.",
-      image: "/images/shipment.PNG",
-      url: "https://vastseacarrier.vercel.app/",
-      tags: ["React.js", "Node.js", "MongoDB"],
+        " LoveCommit is where developers find their perfect pair. Whether you're looking for a coding partner, tech co-founder, or someone who gets your stack overflow jokes - we've got you covered.",
+      image: "/images/lovecommit2.PNG",
+      url: "https://www.lovecommit.com/",
+      tags: ["Next.js", "Node.js", "MongoDB"],
       accentColor: "bg-purple-100",
       textColor: "text-purple-700",
       borderColor: "border-purple-200",
+    },
+    {
+      title: "votingContest",
+      description:
+        "Run secure, transparent contests for writing, art, fashion, talent show, school election and beauty pageants using blockchain.",
+      image: "/images/votingContest.PNG",
+      url: "https://votes-chain.vercel.app/",
+      tags: ["Nexyjs", "Solidity", "TailwindCSS"],
+      accentColor: "bg-green-100",
+      textColor: "text-green-700",
+      borderColor: "border-green-200",
     },
     {
       title: "LegalGenius",
@@ -30,17 +44,6 @@ const JobProfile = () => {
       accentColor: "bg-blue-100",
       textColor: "text-blue-700",
       borderColor: "border-blue-200",
-    },
-    {
-      title: "Police Crime Intelligence System",
-      description:
-        "Law Enforcement Data Management. Access, analyze, and manage criminal records efficiently",
-      image: "/images/law.PNG",
-      url: "https://npfcrimesystem.vercel.app/",
-      tags: ["React", "Express.js", "Node.js"],
-      accentColor: "bg-amber-100",
-      textColor: "text-amber-700",
-      borderColor: "border-amber-200",
     },
   ];
 
@@ -70,7 +73,11 @@ const JobProfile = () => {
   };
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
+    <section
+      className={`relative py-20 overflow-hidden ${
+        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
+      }`}
+    >
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-1/4 w-64 h-64 rounded-full bg-purple-200 filter blur-3xl"></div>
@@ -95,22 +102,19 @@ const JobProfile = () => {
 
           <motion.h2
             variants={item}
-            className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
+            className="text-4xl md:text-5xl font-bold  mb-6"
           >
             Showcase of Excellence
           </motion.h2>
 
-          <motion.p
-            variants={item}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-          >
+          <motion.p variants={item} className="text-xl  max-w-3xl mx-auto">
             Explore our innovative solutions that combine cutting-edge
             technology with exceptional user experiences
           </motion.p>
         </motion.div>
 
         {/* Interactive Project Showcase */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto p-4">
           {/* Project Navigation */}
           <motion.div
             className="flex flex-wrap justify-center gap-4 mb-12"
@@ -137,7 +141,7 @@ const JobProfile = () => {
 
           {/* Featured Project Display */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -175,7 +179,7 @@ const JobProfile = () => {
                 >
                   {projects[activeProject].title}
                 </h3>
-                <p className="text-xl text-gray-700">
+                <p className="text-xl ">
                   {projects[activeProject].description}
                 </p>
               </div>
@@ -194,9 +198,7 @@ const JobProfile = () => {
 
               {/* Features List */}
               <div className="space-y-3">
-                <h4 className="text-lg font-semibold text-gray-800">
-                  Key Features:
-                </h4>
+                <h4 className="text-lg font-semibold ">Key Features:</h4>
                 <ul className="space-y-2">
                   {[
                     "Responsive design for all devices",
@@ -221,7 +223,7 @@ const JobProfile = () => {
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </span>
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -258,14 +260,14 @@ const JobProfile = () => {
         </div>
 
         {/* CTA */}
-        <motion.div
+        {/* <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-xl text-gray-700 mb-8">
+          <p className="text-xl  mb-8">
             Ready to create something extraordinary together?
           </p>
           <motion.a
@@ -280,7 +282,7 @@ const JobProfile = () => {
             Start Your Project
             <FiArrowRight className="ml-2" />
           </motion.a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

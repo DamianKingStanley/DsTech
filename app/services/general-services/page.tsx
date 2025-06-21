@@ -3,7 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"; // Changed from next/legacy/image
+import { useTheme } from "next-themes";
 import {
   FaMobileAlt,
   FaLaptopCode,
@@ -15,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 const ServicesShowcase = () => {
+  const { theme } = useTheme();
   const services = [
     {
       name: "Mobile App Development",
@@ -98,15 +100,29 @@ const ServicesShowcase = () => {
   };
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
-      {/* Decorative elements */}
+    <section
+      className={`relative py-28 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
+    >
+      {/* Decorative elements with theme support */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-100 filter blur-3xl opacity-70"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-purple-100 filter blur-3xl opacity-50"></div>
+        <div
+          className={`absolute top-1/4 left-1/4 w-64 h-64 rounded-full filter blur-3xl opacity-70 ${
+            theme === "dark" ? "bg-blue-900/20" : "bg-blue-100"
+          }`}
+        ></div>
+        <div
+          className={`absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full filter blur-3xl opacity-50 ${
+            theme === "dark" ? "bg-purple-900/20" : "bg-purple-100"
+          }`}
+        ></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
+        {/* Section Header with theme support */}
         <motion.div
           className="text-center mb-20"
           initial="hidden"
@@ -116,21 +132,29 @@ const ServicesShowcase = () => {
         >
           <motion.span
             variants={item}
-            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
+            className={`inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full border uppercase shadow-sm ${
+              theme === "dark"
+                ? "bg-blue-900/30 text-blue-400 border-blue-800"
+                : "bg-blue-100 text-blue-800 border-blue-200"
+            }`}
           >
             What We Offer
           </motion.span>
 
           <motion.h2
             variants={item}
-            className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
+            className={`text-4xl md:text-5xl font-bold mb-6 ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            }`}
           >
             Comprehensive Tech Solutions
           </motion.h2>
 
           <motion.p
             variants={item}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className={`text-xl max-w-3xl mx-auto ${
+              theme === "dark" ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             We combine technical expertise with business acumen to deliver
             solutions that drive real impact
@@ -155,30 +179,51 @@ const ServicesShowcase = () => {
                   : "md:flex-row-reverse"
               } items-center gap-8 md:gap-12`}
             >
-              {/* Image Column */}
+              {/* Image Column - Fixed with proper dimensions */}
               <div className="w-full md:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-video">
                   <Image
                     src={service.image}
                     alt={service.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
               </div>
 
-              {/* Content Column */}
+              {/* Content Column with theme support */}
               <div className="w-full md:w-1/2">
-                <div className="mb-6 inline-flex p-4 bg-blue-100 rounded-xl">
-                  <div className="text-blue-600">{service.icon}</div>
+                <div
+                  className={`mb-6 inline-flex p-4 rounded-xl ${
+                    theme === "dark"
+                      ? "bg-blue-900/30 text-blue-400"
+                      : "bg-blue-100 text-blue-600"
+                  }`}
+                >
+                  {service.icon}
                 </div>
-                <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                <h3
+                  className={`text-3xl font-bold mb-4 ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   {service.name}
                 </h3>
-                <p className="text-gray-600 mb-6 text-lg">{service.desc}</p>
+                <p
+                  className={`text-lg mb-6 ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {service.desc}
+                </p>
                 <Link
                   href={service.url}
-                  className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all font-medium"
+                  className={`inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all ${
+                    theme === "dark"
+                      ? "bg-blue-700 hover:bg-blue-600 text-white"
+                      : "bg-blue-600 hover:bg-blue-700 text-white"
+                  }`}
                 >
                   Explore Service
                   <FaArrowRight className="ml-2" />
@@ -188,7 +233,7 @@ const ServicesShowcase = () => {
           ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* CTA with theme support */}
         <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0 }}
@@ -196,12 +241,20 @@ const ServicesShowcase = () => {
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-xl text-gray-600 mb-8">
+          <p
+            className={`text-xl mb-8 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
             Ready to transform your business with technology?
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all"
+            className={`inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-medium transition-all ${
+              theme === "dark"
+                ? "bg-gradient-to-r from-blue-700 to-blue-800 text-white hover:shadow-blue-900/30"
+                : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-blue-500/30"
+            } hover:shadow-lg`}
           >
             Get Started Today
           </Link>

@@ -4,21 +4,23 @@ import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
+import { useTheme } from "next-themes";
 import Particles from "./Particles";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const HeroSection = () => {
+  const { theme } = useTheme();
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.1 });
 
-  const techDomains = [
-    { name: "AI Solutions", icon: "🤖" },
-    { name: "Web Apps", icon: "🌐" },
-    { name: "Mobile Dev", icon: "📱" },
-    { name: "Cloud Tech", icon: "☁️" },
-    { name: "UI/UX Design", icon: "🎨" },
-    { name: "Tech Coaching", icon: "👨‍🏫" },
-  ];
+  // const techDomains = [
+  //   { name: "AI Solutions" },
+  //   { name: "Web Apps" },
+  //   { name: "Mobile Apps" },
+  //   { name: "Cloud Services" },
+  //   { name: "UI/UX Design" },
+  //   { name: "Tech Training" },
+  // ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,18 +57,18 @@ const HeroSection = () => {
     },
   };
 
-  const infiniteScrollVariants = {
-    animate: {
-      x: ["0%", "-100%"],
-      transition: {
-        x: {
-          repeat: Number.POSITIVE_INFINITY,
-          duration: 20,
-          ease: "linear",
-        },
-      },
-    },
-  };
+  // const infiniteScrollVariants = {
+  //   animate: {
+  //     x: ["0%", "-100%"],
+  //     transition: {
+  //       x: {
+  //         repeat: Number.POSITIVE_INFINITY,
+  //         duration: 20,
+  //         ease: "linear",
+  //       },
+  //     },
+  //   },
+  // };
 
   useEffect(() => {
     if (inView) {
@@ -77,7 +79,11 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-14  min-h-screen flex items-center justify-center bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden"
+      className={`relative pt-20 min-h-screen flex items-center justify-center overflow-hidden ${
+        theme === "dark"
+          ? "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
+          : "bg-gradient-to-b from-white via-blue-50 to-white"
+      }`}
     >
       {/* Subtle Particles Background */}
       <Particles className="absolute inset-0 z-0 opacity-30" />
@@ -93,36 +99,64 @@ const HeroSection = () => {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
-              <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-blue-500/10 text-blue-600 border border-blue-500/20 shadow-sm">
-                Innovation at Lightspeed
+              <span
+                className={`inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full ${
+                  theme === "dark"
+                    ? "bg-blue-900/30 text-blue-400 border-blue-800"
+                    : "bg-blue-500/10 text-blue-600 border-blue-500/20"
+                } border shadow-sm`}
+              >
+                Technology Made Simple
               </span>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight mb-6 text-gray-800"
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight mb-6 ${
+                theme === "dark" ? "text-white" : "text-gray-800"
+              }`}
             >
-              <span className="block">Transform Your</span>
+              <span className="block">Your Vision,</span>
               <span className="block">
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-600">
-                    Digital Future
+                  <span
+                    className={`relative z-10 ${
+                      theme === "dark" ? "text-blue-400" : "text-blue-600"
+                    }`}
+                  >
+                    Our Expertise
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-2 bg-blue-500/30 -rotate-1 z-0"></span>
+                  <span
+                    className={`absolute bottom-0 left-0 w-full h-2 ${
+                      theme === "dark" ? "bg-blue-700" : "bg-blue-500/30"
+                    } -rotate-1 z-0`}
+                  ></span>
                 </span>
               </span>
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-sm md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 mb-8"
+              className={`text-sm md:text-lg lg:text-xl ${
+                theme === "dark" ? "text-gray-300" : "text-gray-600"
+              } max-w-2xl mx-auto lg:mx-0 mb-8`}
             >
-              At Quortek, We build solutions and also onboard you into the tech
-              space. We provide software solutions and empower teams through our{" "}
-              <span className="font-semibold text-gray-800">
-                practical tech coaching
-              </span>{" "}
-              to help businesses thrive in the digital age.
+              At Quortek, we believe technology should work for you, not the
+              other way around. Whether you need a custom solution for your
+              business or want to build tech skills for your team, we&apos;re
+              here to guide you every step of the way - with clear explanations
+              and practical results.
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className={`text-sm md:text-base ${
+                theme === "dark" ? "text-gray-400" : "text-gray-500"
+              } mb-8 italic`}
+            >
+              &quot;QuortekHub is the best tech hub I have come across. Their
+              coaching guide is so smooth.&quot;
+              <br />- Satisfied Client
             </motion.p>
 
             <motion.div
@@ -136,9 +170,9 @@ const HeroSection = () => {
               >
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-full transition-all duration-300 shadow-lg"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium  transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
                 >
-                  Reach Out
+                  Let&apos;s Talk About Your Project
                   <svg
                     className="w-5 h-5 ml-2"
                     fill="none"
@@ -161,7 +195,11 @@ const HeroSection = () => {
                 variants={buttonVariants}
               >
                 <button
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-medium rounded-full border border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 shadow-md"
+                  className={`inline-flex items-center justify-center px-8 py-4 ${
+                    theme === "dark"
+                      ? "bg-gray-800 text-blue-400 border-gray-700 hover:bg-gray-700"
+                      : "bg-white text-blue-600 border-blue-200 hover:bg-blue-50"
+                  } font-medium rounded-full border hover:border-blue-400 transition-all duration-300 shadow-md`}
                   onClick={() => (window.location.href = "tel:+2349159822561")}
                 >
                   <svg
@@ -177,7 +215,7 @@ const HeroSection = () => {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  <a href="tel:+2349159822561">Schedule Call</a>
+                  <a href="tel:+2349159822561">Call Us Directly</a>
                 </button>
               </motion.div>
             </motion.div>
@@ -191,13 +229,25 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <div className="relative h-[500px] w-full">
-              <div className="absolute -right-16 -top-16 w-72 h-72 bg-blue-100 rounded-full filter blur-3xl opacity-70"></div>
-              <div className="absolute -bottom-8 -left-8 w-60 h-60 bg-blue-200 rounded-full filter blur-3xl opacity-70"></div>
+              <div
+                className={`absolute -right-16 -top-16 w-72 h-72 ${
+                  theme === "dark" ? "bg-blue-900/30" : "bg-blue-100"
+                } rounded-full filter blur-3xl opacity-70`}
+              ></div>
+              <div
+                className={`absolute -bottom-8 -left-8 w-60 h-60 ${
+                  theme === "dark" ? "bg-blue-800/30" : "bg-blue-200"
+                } rounded-full filter blur-3xl opacity-70`}
+              ></div>
 
-              <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+              <div
+                className={`relative h-full w-full rounded-2xl overflow-hidden shadow-2xl ${
+                  theme === "dark" ? "border-gray-700" : "border-gray-100"
+                } border`}
+              >
                 <Image
                   src="/images/hero-image.avif"
-                  alt="Digital Transformation"
+                  alt="Quortek team collaborating on digital solutions"
                   layout="fill"
                   objectFit="cover"
                   className="z-10"
@@ -205,10 +255,22 @@ const HeroSection = () => {
                 />
 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent z-20"></div>
+                <div
+                  className={`absolute inset-0 ${
+                    theme === "dark"
+                      ? "bg-gradient-to-tr from-blue-900/30 to-transparent"
+                      : "bg-gradient-to-tr from-blue-500/20 to-transparent"
+                  } z-20`}
+                ></div>
 
                 {/* Floating elements */}
-                <div className="absolute top-10 right-10 p-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg z-30 flex items-center space-x-3">
+                <div
+                  className={`absolute top-10 right-10 p-4 ${
+                    theme === "dark"
+                      ? "bg-gray-800/90 text-white"
+                      : "bg-white/90 text-gray-800"
+                  } backdrop-blur-sm rounded-xl shadow-lg z-30 flex items-center space-x-3`}
+                >
                   <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -224,14 +286,18 @@ const HeroSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-gray-800">
-                      Innovative
-                    </p>
-                    <p className="text-xs text-gray-600">Solutions</p>
+                    <p className="text-xs font-semibold">Custom Solutions</p>
+                    <p className="text-xs opacity-80">Tailored to Your Needs</p>
                   </div>
                 </div>
 
-                <div className="absolute bottom-10 left-10 p-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg z-30 flex items-center space-x-3">
+                <div
+                  className={`absolute bottom-10 left-10 p-4 ${
+                    theme === "dark"
+                      ? "bg-gray-800/90 text-white"
+                      : "bg-white/90 text-gray-800"
+                  } backdrop-blur-sm rounded-xl shadow-lg z-30 flex items-center space-x-3`}
+                >
                   <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -243,10 +309,8 @@ const HeroSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-gray-800">
-                      Expert
-                    </p>
-                    <p className="text-xs text-gray-600">Coaching</p>
+                    <p className="text-xs font-semibold">Hands-On Training</p>
+                    <p className="text-xs opacity-80">Learn By Doing</p>
                   </div>
                 </div>
               </div>
@@ -255,7 +319,7 @@ const HeroSection = () => {
         </div>
 
         {/* Tech Domains Scrolling Section */}
-        <div className="relative overflow-hidden py-6 mt-12">
+        {/* <div className="relative overflow-hidden py-6 mt-12">
           <motion.div
             className="flex whitespace-nowrap"
             variants={infiniteScrollVariants}
@@ -264,22 +328,26 @@ const HeroSection = () => {
             {[...techDomains, ...techDomains].map((tech, index) => (
               <motion.div
                 key={`${tech.name}-${index}`}
-                className="inline-flex items-center mx-8 px-6 py-3 rounded-full bg-white shadow-md border border-gray-100"
+                className={`inline-flex items-center mx-8 px-6 py-3 rounded-full ${
+                  theme === "dark"
+                    ? "bg-gray-800 border-gray-700 text-white"
+                    : "bg-white border-gray-100 text-gray-800"
+                } shadow-md border`}
                 whileHover={{
                   scale: 1.05,
-                  backgroundColor: "rgba(59, 130, 246, 0.1)",
+                  backgroundColor:
+                    theme === "dark"
+                      ? "rgba(30, 58, 138, 0.5)"
+                      : "rgba(59, 130, 246, 0.1)",
                   borderColor: "rgba(59, 130, 246, 0.5)",
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-2xl mr-3">{tech.icon}</span>
-                <span className="text-sm font-medium text-gray-800">
-                  {tech.name}
-                </span>
+                <span className="text-sm font-medium">{tech.name}</span>
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

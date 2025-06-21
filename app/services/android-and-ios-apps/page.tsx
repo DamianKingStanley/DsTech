@@ -12,10 +12,11 @@ import {
   FaReact,
   FaAndroid,
   FaApple,
-  FaArrowRight,
 } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 const MobileDevelopmentShowcase = () => {
+  const { theme } = useTheme();
   const processSteps = [
     {
       title: "Discovery & Strategy",
@@ -54,7 +55,6 @@ const MobileDevelopmentShowcase = () => {
       title: "Native Performance",
       desc: "React Native delivers truly native experiences with 90%+ code reuse across platforms.",
       icon: <FaMobileAlt className="text-2xl" />,
-      color: "bg-blue-100 border-blue-200",
     },
     {
       title: "iOS & Android Expertise",
@@ -65,16 +65,13 @@ const MobileDevelopmentShowcase = () => {
           <FaAndroid className="text-2xl" />
         </div>
       ),
-      color: "bg-blue-50 border-blue-100",
     },
     {
       title: "Future-Proof Architecture",
       desc: "Modular codebases designed for easy scaling and feature additions.",
       icon: <FaCode className="text-2xl" />,
-      color: "bg-blue-100 border-blue-200",
     },
   ];
-
   // Animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -88,119 +85,115 @@ const MobileDevelopmentShowcase = () => {
   };
 
   const item = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
-
-  const cardHover = {
-    hover: {
-      y: -10,
-      boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.1)",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
+        duration: 0.5,
       },
     },
   };
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-white via-blue-50 to-white overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-100 filter blur-3xl opacity-70"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-purple-100 filter blur-3xl opacity-50"></div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
+    <section
+      className={`relative py-20 overflow-hidden ${
+        theme === "dark" ? "bg-gray-900" : "bg-white"
+      }`}
+    >
+      <div className="container mx-auto px-4">
         {/* Hero Section */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-20 max-w-3xl mx-auto"
           initial="hidden"
           whileInView="visible"
           variants={container}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
         >
           <motion.span
             variants={item}
-            className="inline-block px-6 py-2 mb-6 text-sm font-medium tracking-wider rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase shadow-sm"
+            className={`inline-block px-4 py-2 mb-4 text-sm font-medium rounded-full ${
+              theme === "dark"
+                ? "bg-blue-900/30 text-blue-400"
+                : "bg-blue-100 text-blue-800"
+            }`}
           >
             Mobile Excellence
           </motion.span>
 
           <motion.h1
             variants={item}
-            className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
+            className={`text-4xl md:text-5xl font-bold mb-6 ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}
           >
             Cross-Platform App Development
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className={`text-xl ${
+              theme === "dark" ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             We build performant, beautiful mobile experiences that work
             seamlessly across iOS and Android
           </motion.p>
         </motion.div>
 
-        {/* Process Section */}
-        <div className="mb-28">
-          <motion.div
-            className="text-center mb-20"
-            initial="hidden"
-            whileInView="visible"
-            variants={container}
-            viewport={{ once: true }}
-          >
-            <motion.h2
-              variants={item}
-              className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
-            >
-              Our Proven Development Process
-            </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-            >
-              A meticulous approach that ensures quality at every stage
-            </motion.p>
-          </motion.div>
+        {/* Process Timeline */}
+        <div className="relative mb-28 max-w-4xl mx-auto">
+          <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-blue-500 to-purple-500"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {processSteps.map((step, index) => (
-              <motion.div key={index} variants={item}>
-                <motion.div
-                  variants={cardHover}
-                  className={`h-full  overflow-hidden  p-8 flex flex-col`}
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={index}
+              className={`relative mb-12 flex ${
+                index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+              } items-center`}
+              initial="hidden"
+              whileInView="visible"
+              variants={item}
+              viewport={{ once: true }}
+            >
+              <div
+                className={`w-1/2 p-6 ${
+                  index % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"
+                }`}
+              >
+                <div
+                  className={`inline-flex items-center justify-center w-14 h-14 rounded-full mb-4 ${
+                    theme === "dark"
+                      ? "bg-blue-900/30 text-blue-400"
+                      : "bg-blue-100 text-blue-600"
+                  }`}
                 >
-                  <div className="mb-6 flex justify-center">
-                    <div className="p-4 bg-blue-600 rounded-xl shadow-sm">
-                      {step.icon}
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600">{step.desc}</p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+                  {step.icon}
+                </div>
+                <h3
+                  className={`text-2xl font-bold mb-3 ${
+                    theme === "dark" ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {step.title}
+                </h3>
+                <p
+                  className={`${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {step.desc}
+                </p>
+              </div>
+              <div className="w-1/2"></div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Benefits Section */}
-        <div className="mb-28">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-20"
+            className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
             variants={container}
@@ -208,60 +201,61 @@ const MobileDevelopmentShowcase = () => {
           >
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+              className={`text-3xl md:text-4xl font-bold mb-6 ${
+                theme === "dark" ? "text-white" : "text-gray-900"
+              }`}
             >
               Why Choose Our Mobile Expertise
             </motion.h2>
             <motion.p
               variants={item}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className={`text-xl ${
+                theme === "dark" ? "text-gray-300" : "text-gray-600"
+              }`}
             >
               We combine technical excellence with strategic thinking
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-8">
             {benefits.map((benefit, index) => (
-              <motion.div key={index} variants={item} whileHover="hover">
-                <motion.div
-                  variants={cardHover}
-                  className={`h-full ${benefit.color} rounded-2xl overflow-hidden shadow-lg border p-8 flex flex-col items-center text-center`}
+              <motion.div
+                key={index}
+                variants={item}
+                className={`flex-1 p-8 rounded-xl ${
+                  theme === "dark"
+                    ? "bg-gray-800 hover:bg-gray-700"
+                    : "bg-gray-50 hover:bg-gray-100"
+                } transition-all`}
+                whileHover={{ y: -5 }}
+              >
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
+                    theme === "dark"
+                      ? "bg-blue-900/30 text-blue-400"
+                      : "bg-blue-100 text-blue-600"
+                  }`}
                 >
-                  <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center mb-6 shadow-sm">
-                    {benefit.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-800">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600">{benefit.desc}</p>
-                </motion.div>
+                  {benefit.icon}
+                </div>
+                <h3
+                  className={`text-xl font-bold mb-4 ${
+                    theme === "dark" ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {benefit.title}
+                </h3>
+                <p
+                  className={`${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {benefit.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-blue-100">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-              Ready to build your mobile app?
-            </h3>
-            <p className="text-xl text-gray-600 mb-8">
-              Let us discuss how we can bring your vision to life on both iOS
-              and Android
-            </p>
-            <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all">
-              Reach Out Now
-              <FaArrowRight className="ml-2" />
-            </button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
